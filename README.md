@@ -1,2 +1,2 @@
 # DSA-Practice
-A repo which contains all my dsa problems and stuff done in Java
+A repo which contains all my dsa problem solutions and stuff done in Java
