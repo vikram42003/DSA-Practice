@@ -1,4 +1,4 @@
-class Solution {
+class Betting_Game {
     static int betBalance(String result) {
         int sum = 4;
         int betAmt = 1;

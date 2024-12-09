@@ -31,7 +31,7 @@
 
 import java.util.HashSet;
 
-class Solution {
+class Smallest_Positive_Missing_Number {
     // Function to find the smallest positive number missing from the array.
     public int missingNumber(int[] arr) {
         // Your code here

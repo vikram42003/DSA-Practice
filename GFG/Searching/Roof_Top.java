@@ -1,4 +1,4 @@
-class Solution {
+class Roof_Top {
     // Function to find maximum number of consecutive steps
     // to gain an increase in altitude with each step.
     public int maxStep(int arr[]) {

@@ -1,4 +1,4 @@
-class Solution {
+class Minimum_Number_In_A_Sorted_Rotated_Array {
     // Function to find the minimum element in sorted and rotated array.
     static int minNumber(int arr[], int low, int high) {
         int lowest = Integer.MAX_VALUE;

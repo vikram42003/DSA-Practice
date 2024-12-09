@@ -1,6 +1,6 @@
 import java.util.HashMap;
 
-class Solution {
+class More_Than_N_K_Occurences {
     // Function to find all elements in array that appear more than n/k times.
     public int countOccurence(int[] arr, int k) {
         // HashMap Approach

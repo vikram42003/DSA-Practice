@@ -11,7 +11,7 @@
 import java.util.ArrayList;
 import java.util.List;
 
-class Solution {
+class Print_Pattern {
     public List<Integer> pattern(int N) {
         // code here
         List<Integer> list = new ArrayList<>();

@@ -1,4 +1,4 @@
-class Solution {
+class Sorted_Array_Search {
     static boolean searchInSorted(int arr[], int k) {
         int l = 0, r = arr.length - 1;
 

@@ -1,4 +1,4 @@
-class StrongestNeighbour {
+class Strongest_Neighbour {
 
     // Function to find maximum for every adjacent pairs in the array.
     static void maximumAdjacent(int sizeOfArray, int arr[]) {

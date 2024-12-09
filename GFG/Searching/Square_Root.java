@@ -1,4 +1,4 @@
-class Solution {
+class Square_Root {
     int floorSqrt(int n) {
         int l = 0, r = n;
         int closest = -1;

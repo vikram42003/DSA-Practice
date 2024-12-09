@@ -1,4 +1,4 @@
-class Solution {
+class Floor_In_A_Sorted_Array {
     static boolean searchInSorted(int arr[], int k) {
         int l = 0, r = arr.length - 1;
 

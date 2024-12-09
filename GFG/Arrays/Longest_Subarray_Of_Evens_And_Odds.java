@@ -1,4 +1,4 @@
-class Solution {
+class Longest_Subarray_Of_Evens_And_Odds {
     // arr[]: input array
     // n: size of array
     // Function to find the length of longest subarray of even and odd numbers.

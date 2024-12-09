@@ -1,4 +1,4 @@
-class Solution {
+class Count_1s_In_Binary_Array {
     // Function to count number of ones in the binary array
     // N: size of array
     // arr[]: input array
