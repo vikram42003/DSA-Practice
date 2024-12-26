@@ -15,4 +15,9 @@ class First_Bad_Version_278 {
         }
         return prevBad;
     }
+
+    // Making a mock isBadVersion method to supress vscode warning
+    public boolean isBadVersion(int mid) {
+        return true;
+    }
 }
