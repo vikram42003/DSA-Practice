@@ -1,3 +1,5 @@
+package GFG.Searching;
+
 // link - https://www.geeksforgeeks.org/problems/subarray-with-given-sum-1587115621/1
 
 // Question - Given an unsorted array arr containing only non-negative 

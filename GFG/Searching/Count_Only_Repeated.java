@@ -1,3 +1,5 @@
+package GFG.Searching;
+
 // User function Template for Java
 
 // Input - arr[] of POSITIVE integers

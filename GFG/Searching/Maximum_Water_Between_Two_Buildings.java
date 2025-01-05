@@ -1,3 +1,5 @@
+package GFG.Searching;
+
 public class Maximum_Water_Between_Two_Buildings {
     public static void main(String[] args) {
         int[] arr = { 2, 1, 3, 4, 6, 5 }; // ans = 8

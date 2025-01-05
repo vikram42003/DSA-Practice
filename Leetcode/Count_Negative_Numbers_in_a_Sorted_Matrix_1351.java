@@ -18,14 +18,14 @@
 
 class Count_Negative_Numbers_in_a_Sorted_Matrix_1351 {
     public static void main(String[] args) {
-        int[][] arr = { { 4, 2, 1, 1, -2 } }; // ans = 3;
+        // int[][] arr = { { 4, 2, 1, 1, -2 } }; // ans = 3;
         int[][] arr2 = {
                 { 4, 3, 2, -1 },
                 { 3, 2, 1, -1 },
                 { 1, 1, -1, -2 },
                 { -1, -1, -2, -3 }
         }; // ans = 8
-        int[][] arr3 = { { 3, 2 }, { 1, 0 } }; // ans = 0
+        // int[][] arr3 = { { 3, 2 }, { 1, 0 } }; // ans = 0
 
         System.out.println(countNegativesStaircase(arr2));
     }

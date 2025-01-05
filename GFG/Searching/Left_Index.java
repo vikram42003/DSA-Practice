@@ -1,3 +1,5 @@
+package GFG.Searching;
+
 class Left_Index {
     static int leftIndex(int N, int arr[], int X) {
         int l = 0, r = N - 1, leftMost = -1;

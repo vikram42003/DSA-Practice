@@ -1,3 +1,5 @@
+package GFG.Searching;
+
 // Question - You are given an integer n and an integer array arr of size
 //           n+2. All elements of the array are in the range from 1 to n.
 //           Also, all elements occur once except two numbers which occur

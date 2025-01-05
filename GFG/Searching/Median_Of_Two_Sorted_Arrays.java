@@ -1,3 +1,5 @@
+package GFG.Searching;
+
 // Question - Given two sorted arrays of sizes N and M respectively. The task is to find the median of the two arrays
 //            when they get merged.
 //            If there are even number of elements in the resulting array, find the floor of the average of two medians.

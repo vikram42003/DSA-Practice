@@ -1,3 +1,5 @@
+package GFG.Searching;
+
 class Majority_Element {
     static int majorityElement(int arr[]) {
         // Moore's Voting Algorithm

@@ -1,3 +1,5 @@
+package GFG.Searching;
+
 import java.util.HashMap;
 
 class More_Than_N_K_Occurences {

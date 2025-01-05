@@ -1,3 +1,5 @@
+package GFG.Searching;
+
 class Square_Root {
     int floorSqrt(int n) {
         int l = 0, r = n;

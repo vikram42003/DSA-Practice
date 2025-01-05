@@ -1,3 +1,5 @@
+package GFG.Searching;
+
 class Peak_Element {
     public int peakElement(int[] arr) {
         // If theres only 1 element

@@ -1,3 +1,5 @@
+package GFG.Searching;
+
 public class Allocate_Minimum_Pages {
     public static void main(String[] args) {
         int[] arr = { 12, 34, 67, 90 }; // ans = 113

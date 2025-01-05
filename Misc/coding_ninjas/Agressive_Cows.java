@@ -5,7 +5,7 @@ import java.util.Arrays;
 
 public class Agressive_Cows {
     public static void main(String[] args) {
-        int[] stalls = { 1, 2, 3 }; // k = 2   ans = 2
+        // int[] stalls = { 1, 2, 3 }; // k = 2   ans = 2
         int[] stalls2 = { 87, 93, 51, 81, 68, 99, 59 }; // k = 4   ans = 13
 
         System.out.println(aggressiveCows(stalls2, 4));
