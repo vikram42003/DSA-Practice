@@ -1,4 +1,4 @@
-public class Special_Array_With_X_Elements_Greater_Than_or_Equal_X_1608 {
+public class _1608_Special_Array_With_X_Elements_Greater_Than_or_Equal_X {
     public int specialArray(int[] nums) {
         for (int i = 1; i <= nums.length; i++) {
             int count = 0;

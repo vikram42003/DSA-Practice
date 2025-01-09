@@ -1,6 +1,6 @@
 // link - https://leetcode.com/problems/single-element-in-a-sorted-array/description/
 
-class Single_Element_in_a_Sorted_Array_540 {
+class _540_Single_Element_in_a_Sorted_Array {
     public int singleNonDuplicate(int[] nums) {
         int l = 0, r = nums.length - 1;
 

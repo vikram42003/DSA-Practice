@@ -1,6 +1,6 @@
 // link - https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/description/
 
-public class Two_Sum_II_Input_Array_Is_Sorted_167 {
+public class _167_Two_Sum_II_Input_Array_Is_Sorted {
     public int[] twoSum(int[] numbers, int target) {
         int n = numbers.length;
         for (int i = 0; i < n; i++) {

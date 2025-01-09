@@ -18,8 +18,8 @@
 
 // Approach - min-of-max/max-of-min type Binary Search 
 //          - Time = O(n log n) 
-//            - or O((k log s) + n) where k is the given k value and s is the sum of nums 
-//              and n is the first initial loop to find the sum
+//            - or O((n log s) + n) where first n is each 'check' and s is the sum of nums 
+//              and the other n is the first initial loop to find the sum
 //          - Space = O(1)
 
 //          - we have to find the minimum possible largest subarrays sum, so lets assume
@@ -41,7 +41,7 @@
 //            number)
 //          - At the end l will land upon the answer and we can just return it
 
-class Split_Array_Largest_Sum_410 {
+class _410_Split_Array_Largest_Sum {
     public int splitArray(int[] nums, int k) {
         int l = 0, r = 0;
         for (int num : nums) {

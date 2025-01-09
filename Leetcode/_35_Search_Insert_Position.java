@@ -1,5 +1,10 @@
-public class Binary_Search_704 {
-    public int search(int[] nums, int target) {
+// link - https://leetcode.com/problems/search-insert-position/description/
+
+class _35_Search_Insert_Position {
+    public int searchInsert(int[] nums, int target) {
+        if (nums[nums.length - 1] < target)
+            return nums.length;
+
         int l = 0, r = nums.length - 1;
         while (l <= r) {
             int mid = l + ((r - l) / 2);
@@ -11,6 +16,7 @@ public class Binary_Search_704 {
                 l = mid + 1;
             }
         }
-        return -1;
+
+        return l;
     }
 }

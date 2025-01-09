@@ -21,7 +21,7 @@
 
 import java.util.Arrays;
 
-public class Fair_Candy_Swap_888 {
+public class _888_Fair_Candy_Swap {
     public int[] fairCandySwap(int[] aliceSizes, int[] bobSizes) {
         int aTotal = Arrays.stream(aliceSizes).sum();
         int bTotal = Arrays.stream(bobSizes).sum();

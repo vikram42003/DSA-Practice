@@ -30,7 +30,7 @@
 // result
 // then return the result
 
-class Kth_Missing_Positive_Number_1539 {
+class _1539_Kth_Missing_Positive_Number {
     public static void main(String[] args) {
         int[] arr = { 2, 3, 4, 7, 11 }; // ans = 9
         int k = 5;

@@ -1,6 +1,6 @@
 // link - https://leetcode.com/problems/find-the-smallest-divisor-given-a-threshold/
 
-public class Find_the_Smallest_Divisor_Given_a_Threshold_1283 {
+public class _1283_Find_the_Smallest_Divisor_Given_a_Threshold {
     public int smallestDivisor(int[] nums, int threshold) {
         int l = 1, r = (int) 1e6;
 

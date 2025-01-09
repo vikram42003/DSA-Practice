@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class Intersection_of_Two_Arrays_II_350 {
+public class _350_Intersection_of_Two_Arrays_II {
     public int[] intersect(int[] nums1, int[] nums2) {
         if (nums1.length > nums2.length) {
             int[] temp = nums1;

@@ -2,7 +2,7 @@
 
 import java.util.HashSet;
 
-public class Intersection_of_Two_Arrays_349 {
+public class _349_Intersection_of_Two_Arrays {
     public int[] intersection(int[] nums1, int[] nums2) {
         if (nums1.length > nums2.length) {
             int[] temp = nums1;

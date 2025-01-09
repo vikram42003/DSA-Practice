@@ -1,6 +1,6 @@
 // link - https://leetcode.com/problems/minimum-number-of-days-to-make-m-bouquets/
 
-public class Minimum_Number_of_Days_to_Make_m_Bouquets_1482 {
+public class _1482_Minimum_Number_of_Days_to_Make_m_Bouquets {
     public int minDays(int[] bloomDay, int m, int k) {
         if (m * k > bloomDay.length || m * k < 0)
             return -1;

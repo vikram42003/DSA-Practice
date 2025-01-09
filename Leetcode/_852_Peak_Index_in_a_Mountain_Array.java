@@ -1,4 +1,4 @@
-class Peak_Index_in_a_Mountain_Array_852 {
+class _852_Peak_Index_in_a_Mountain_Array {
     public int peakIndexInMountainArray(int[] arr) {
         int peak = 0, l = 0, r = arr.length - 1;
 

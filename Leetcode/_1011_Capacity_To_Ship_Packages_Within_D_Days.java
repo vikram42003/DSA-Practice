@@ -1,8 +1,6 @@
 // link - https://leetcode.com/problems/capacity-to-ship-packages-within-d-days/ 
 
-import java.util.Arrays;
-
-public class Capacity_To_Ship_Packages_Within_D_Days_1011 {
+public class _1011_Capacity_To_Ship_Packages_Within_D_Days {
     public static void main(String[] args) {
         // int[] weights = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 }; // ans = 15
         // int days = 5;
@@ -10,7 +8,7 @@ public class Capacity_To_Ship_Packages_Within_D_Days_1011 {
         int[] weights2 = { 1, 2, 3, 1, 1 }; // ans = 3
         int days2 = 4;
 
-        // System.out.println(shipWithinDays(weights, days));
+        // System.out.println(shipWithincDays(weights, days));
         System.out.println(shipWithinDays(weights2, days2));
     }
 

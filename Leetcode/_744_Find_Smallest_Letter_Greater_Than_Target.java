@@ -1,6 +1,6 @@
 // link - https://leetcode.com/problems/find-smallest-letter-greater-than-target/
 
-public class Find_Smallest_Letter_Greater_Than_Target_744 {
+public class _744_Find_Smallest_Letter_Greater_Than_Target {
     public char nextGreatestLetter(char[] letters, char target) {
         int idx = -1, l = 0, r = letters.length - 1;
 

@@ -1,6 +1,6 @@
 // link - https://leetcode.com/problems/sqrtx/
 
-public class Sqrt_69 {
+public class _69_Sqrt {
     public int mySqrt(int x) {
         if (x < 2)
             return x;

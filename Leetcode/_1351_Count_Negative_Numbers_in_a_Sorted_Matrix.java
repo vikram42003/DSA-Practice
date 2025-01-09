@@ -16,7 +16,7 @@
 //   the negative ones will only lie after it
 //   similarly if we are at arr[n][x] then no element will lie to the left of n
 
-class Count_Negative_Numbers_in_a_Sorted_Matrix_1351 {
+class _1351_Count_Negative_Numbers_in_a_Sorted_Matrix {
     public static void main(String[] args) {
         // int[][] arr = { { 4, 2, 1, 1, -2 } }; // ans = 3;
         int[][] arr2 = {

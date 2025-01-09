@@ -1,6 +1,6 @@
 // link - https://leetcode.com/problems/koko-eating-bananas/description/
 
-public class Koko_Eating_Bananas_875 {
+public class _875_Koko_Eating_Bananas {
     public static void main(String[] args) {
         int[] piles = { 3, 6, 7, 11 }; // ans = 4
         int h = 8;

@@ -1,6 +1,6 @@
 import java.util.Arrays;
 
-public class Check_If_N_and_Its_Double_Exist_1346 {
+public class _1346_Check_If_N_and_Its_Double_Exist {
     public boolean checkIfExist(int[] arr) {
         Arrays.sort(arr);
         int zeroCount = 0;
