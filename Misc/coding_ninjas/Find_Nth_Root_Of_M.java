@@ -1,7 +1,5 @@
 // link - https://www.naukri.com/code360/problems/nth-root-of-m_1062679
 
-package Misc.coding_ninjas;
-
 public class Find_Nth_Root_Of_M {
     public static int NthRoot(int n, int m) {
         int l = 1, r = m;

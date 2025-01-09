@@ -1,6 +1,5 @@
 // link - https://www.naukri.com/code360/problems/aggressive-cows_1082559
 
-package Misc.coding_ninjas;
 import java.util.Arrays;
 
 public class Agressive_Cows {

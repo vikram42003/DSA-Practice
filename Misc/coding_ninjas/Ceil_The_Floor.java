@@ -1,6 +1,4 @@
-// link - https://www.naukri.com/code360/problems/ceiling-in-a-sorted-array_1825401
-
-package Misc.coding_ninjas;
+// link - https://www.naukri.com/code360/problems/ceiling-in-a-sorted-
 
 public class Ceil_The_Floor {
     public static int[] getFloorAndCeil(int[] a, int n, int x) {

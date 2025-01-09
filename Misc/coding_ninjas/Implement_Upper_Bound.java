@@ -1,7 +1,5 @@
 // link - https://www.naukri.com/code360/problems/implement-upper-bound_8165383
 
-package Misc.coding_ninjas;
-
 public class Implement_Upper_Bound {
     public static int upperBound(int[] arr, int x, int n) {
         if (arr[n - 1] <= x)
