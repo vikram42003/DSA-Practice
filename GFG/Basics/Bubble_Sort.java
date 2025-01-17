@@ -18,4 +18,19 @@ public class Bubble_Sort {
                 return;
         }
     }
+
+    public static void recursiveBubbleSort(int[] arr, int n) {
+        if (n == 1)
+            return;
+
+        for (int i = 1; i < n; i++) {
+            if (arr[i - 1] > arr[i]) {
+                int temp = arr[i];
+                arr[i] = arr[i - 1];
+                arr[i - 1] = temp;
+            }
+        }
+
+        recursiveBubbleSort(arr, n - 1);
+    }
 }
