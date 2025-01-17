@@ -17,6 +17,7 @@ public class Nth_Fibonacci_Number {
 
         if (limit == 1 || limit == 2) {
             System.out.println(1);
+            scanner.close();
             return;
         }
         limit -= 2;

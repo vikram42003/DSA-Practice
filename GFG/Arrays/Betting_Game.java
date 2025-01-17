@@ -1,3 +1,5 @@
+package GFG.Arrays;
+
 class Betting_Game {
     static int betBalance(String result) {
         int sum = 4;

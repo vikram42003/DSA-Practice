@@ -1,3 +1,5 @@
+package GFG.Arrays;
+
 class Longest_Subarray_Of_Evens_And_Odds {
     // arr[]: input array
     // n: size of array

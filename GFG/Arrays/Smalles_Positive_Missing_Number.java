@@ -1,3 +1,5 @@
+package GFG.Arrays;
+
 // Q - find the smallest positive number missing from the array
 
 // I - integer array arr[]

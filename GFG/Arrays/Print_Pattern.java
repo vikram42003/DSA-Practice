@@ -1,3 +1,5 @@
+package GFG.Arrays;
+
 // Input - int
 
 // Constraints - 10^5 (within int range)

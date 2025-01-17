@@ -1,3 +1,5 @@
+package GFG.Arrays;
+
 class Strongest_Neighbour {
 
     // Function to find maximum for every adjacent pairs in the array.
