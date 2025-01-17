@@ -1,6 +1,6 @@
 // link - https://www.geeksforgeeks.org/problems/java-if-else-decision-making0924/0
 
-package GFG;
+package GFG.Basics;
 
 public class Decision_Making_in_Java {
     public static String compareNM(int n, int m) {

@@ -1,6 +1,6 @@
 // link - https://www.geeksforgeeks.org/problems/data-type-1666706751/1
 
-package GFG;
+package GFG.Basics;
 
 public class Data_Type {
     static int dataTypeSize(String str) {
