@@ -1,3 +1,4 @@
+package Coding_ninjas;
 // link - https://www.naukri.com/code360/problems/painter-s-partition-problem_1089557
 
 import java.util.ArrayList;

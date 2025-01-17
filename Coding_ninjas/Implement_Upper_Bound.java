@@ -1,3 +1,4 @@
+package Coding_ninjas;
 // link - https://www.naukri.com/code360/problems/implement-upper-bound_8165383
 
 public class Implement_Upper_Bound {

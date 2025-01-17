@@ -1,3 +1,4 @@
+package Coding_ninjas;
 // link - https://www.naukri.com/code360/problems/largest-subarray-sum-minimized_7461751
 
 class Largest_Subarray_Sum_Minimized {

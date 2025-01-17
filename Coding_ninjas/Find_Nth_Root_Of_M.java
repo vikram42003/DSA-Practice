@@ -1,3 +1,4 @@
+package Coding_ninjas;
 // link - https://www.naukri.com/code360/problems/nth-root-of-m_1062679
 
 public class Find_Nth_Root_Of_M {

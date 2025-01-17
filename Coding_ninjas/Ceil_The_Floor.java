@@ -1,3 +1,4 @@
+package Coding_ninjas;
 // link - https://www.naukri.com/code360/problems/ceiling-in-a-sorted-
 
 public class Ceil_The_Floor {
