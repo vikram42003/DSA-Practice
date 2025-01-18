@@ -14,4 +14,16 @@ public class Insertion_Sort {
             }
         }
     }
+
+    public void recursiveInsertionSort(int[] arr, int n) {
+        if (n == 1)
+            return;
+        recursiveInsertionSort(arr, n - 1);
+        while (n > 1 && arr[n - 1] < arr[n - 2]) {
+            int temp = arr[n - 1];
+            arr[n - 1] = arr[n - 2];
+            arr[n - 2] = temp;
+            n--;
+        }
+    }
 }
