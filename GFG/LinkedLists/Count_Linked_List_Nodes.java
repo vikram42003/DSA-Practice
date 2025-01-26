@@ -1,6 +1,6 @@
 // link - https://www.geeksforgeeks.org/problems/count-nodes-of-linked-list/0
 
-package GFG;
+package GFG.LinkedLists;
 
 public class Count_Linked_List_Nodes {
     public int getCount(Node head) {

@@ -1,6 +1,6 @@
 // link - https://www.geeksforgeeks.org/problems/introduction-to-linked-list/1
 
-package GFG;
+package GFG.LinkedLists;
 
 class Node {
     int data;
