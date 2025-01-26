@@ -4,11 +4,11 @@ import java.util.HashMap;
 
 public class _992_Subarrays_with_K_Different_Integers {
     public static void main(String[] args) {
-        int[] nums = { 1, 2, 1, 2, 3 }; // ans = 7
-        int k = 2;
+        // int[] nums = { 1, 2, 1, 2, 3 }; // ans = 7
+        // int k = 2;
 
-        int[] nums2 = { 1, 2 }; // ans = 2?
-        int k2 = 1;
+        // int[] nums2 = { 1, 2 }; // ans = 2?
+        // int k2 = 1;
 
         int[] nums3 = { 2, 1, 1, 1, 2 }; // ans = 8
         int k3 = 1;
