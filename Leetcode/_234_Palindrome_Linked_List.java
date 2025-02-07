@@ -1,6 +1,7 @@
 // link - https://leetcode.com/problems/palindrome-linked-list/
 
 import java.util.ArrayList;
+import java.util.Stack;
 
 public class _234_Palindrome_Linked_List {
     // Store it as an ArrayList approach
@@ -52,5 +53,29 @@ public class _234_Palindrome_Linked_List {
             start = next;
         }
         return prev;
+    }
+
+    // Stack approach
+    public boolean isPalindromeStack(ListNode head) {
+        Stack<Integer> stack = new Stack<>();
+        ListNode curr = head;
+
+        // push all elements onto the stack
+        while (curr != null) {
+            stack.push(curr.val);
+            curr = curr.next;
+        }
+
+        // pop elements off of stack and check if end elements are same as start
+        // elements
+        curr = head;
+        while (curr != null) {
+            if (curr.val != stack.pop()) {
+                return false;
+            }
+            curr = curr.next;
+        }
+
+        return true;
     }
 }
