@@ -44,4 +44,20 @@ public class _1726_Tuple_with_Same_Product {
 
         return total;
     }
+
+    // A more optimized version of the solution above
+    public int tupleSameProductMoreOptimized(int[] nums) {
+        HashMap<Integer, Integer> products = new HashMap<>();
+        int total = 0;
+
+        for (int i = 0; i < nums.length; i++) {
+            for (int j = i + 1; j < nums.length; j++) {
+                int prod = nums[i] * nums[j];
+                total += 8 * products.getOrDefault(prod, 0);
+                products.put(prod, products.getOrDefault(prod, 0) + 1);
+            }
+        }
+
+        return total;
+    }
 }
