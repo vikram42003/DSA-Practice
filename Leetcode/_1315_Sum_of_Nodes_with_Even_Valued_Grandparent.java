@@ -25,7 +25,8 @@ class TreeNode {
 public class _1315_Sum_of_Nodes_with_Even_Valued_Grandparent {
 
     // BFS solution - Time = O(n) - Space = O(1)
-    // really slow, the bfs can be further optimized
+    // really slow, the bfs can be further optimized by skipping nodes that dont have a grandchild
+    // but a better approach would be using DFS, i think
     public int sumEvenGrandparent(TreeNode root) {
         Queue<TreeNode> q = new LinkedList<>();
         q.add(root);
