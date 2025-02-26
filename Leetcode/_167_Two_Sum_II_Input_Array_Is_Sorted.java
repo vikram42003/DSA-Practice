@@ -1,7 +1,24 @@
 // link - https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/description/
 
 public class _167_Two_Sum_II_Input_Array_Is_Sorted {
+    // Two Pointers Approach - Time = O(n) - Space = O(1)
     public int[] twoSum(int[] numbers, int target) {
+        int l = 0, r = numbers.length - 1;
+        while (l < r) {
+            int sum = numbers[l] + numbers[r];
+            if (sum == target) {
+                return new int[] { l + 1, r + 1 };
+            } else if (sum < target) {
+                l++;
+            } else {
+                r--;
+            }
+        }
+        return new int[] { -1, -1 };
+    }
+
+    // Binary Search Approach - Time = O(n log n) - Space = O(1)
+    public int[] twoSumBinarySearch(int[] numbers, int target) {
         int n = numbers.length;
         for (int i = 0; i < n; i++) {
             int required = target - numbers[i];
