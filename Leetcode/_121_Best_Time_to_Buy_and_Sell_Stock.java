@@ -24,4 +24,22 @@ class _121_Best_Time_to_Buy_and_Sell_Stock {
 
         return maxDiff;
     }
+
+    // Optimized solution - Time = O(n) - Space = O(1)
+    // We consider each day as the buying price for the stock
+    // track the changes to the price after we've bought the stock in curr and keep
+    // track of the max value that curr has hit
+    // if at any point curr gets negative then that means we've hit a new lower
+    // point and should try buying at this price
+    // return the max diff
+    public int maxProfitOptimized(int[] prices) {
+        int curr = 0, max = 0;
+        for (int i = 1; i < prices.length; i++) {
+            curr += prices[i] - prices[i - 1];
+            if (curr < 0)
+                curr = 0;
+            max = Math.max(max, curr);
+        }
+        return max;
+    }
 }
