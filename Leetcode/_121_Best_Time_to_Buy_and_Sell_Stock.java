@@ -42,4 +42,26 @@ class _121_Best_Time_to_Buy_and_Sell_Stock {
         }
         return max;
     }
+
+    // Two Pointer solution - Time = O(n) - Space = O(1)
+    public int maxProfitTwoPointer(int[] prices) {
+        if (prices.length <= 1)
+            return 0;
+        // i = buy index j = sell index
+        // we'll try to keep i as the minimum number in the array and j as
+        // maximum number in the array while tracking the maxProfit at each step
+        int i = 0, j = 1;
+        int maxProfit = 0;
+
+        while (j < prices.length) {
+            int curr = prices[j] - prices[i];
+            maxProfit = Math.max(maxProfit, curr);
+            if (prices[j] < prices[i]) {
+                i = j;
+            }
+            j++;
+        }
+
+        return maxProfit;
+    }
 }
