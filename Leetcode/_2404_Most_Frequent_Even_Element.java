@@ -4,7 +4,7 @@ import java.util.HashMap;
 
 public class _2404_Most_Frequent_Even_Element {
     // Naive Solution
-    public int mostFrequentEven(int[] nums) {
+    public int mostFrequentEvenNaive(int[] nums) {
         HashMap<Integer, Integer> map = new HashMap<>();
 
         for (int i : nums) {
@@ -26,5 +26,25 @@ public class _2404_Most_Frequent_Even_Element {
         }
 
         return ans == Integer.MAX_VALUE ? -1 : ans;
+    }
+
+    // Optimized Solution - 1 pass
+    public int mostFrequentEven(int[] nums) {
+        HashMap<Integer, Integer> map = new HashMap<>();
+
+        int count = 0;
+        int ans = -1;
+        for (int i : nums) {
+            if ((i & 1) == 0) {
+                map.put(i, map.getOrDefault(i, 0) + 1);
+
+                if (map.get(i) > count || (map.get(i) == count && i < ans)) {
+                    ans = i;
+                    count = map.get(i);
+                }
+            }
+        }
+
+        return ans;
     }
 }
