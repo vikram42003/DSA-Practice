@@ -5,8 +5,8 @@ import java.util.Arrays;
 public class _1652_Defuse_the_Bomb {
     public static void main(String[] args) {
         int[] code = { 5, 7, 1, 4 };
-        int k = 3; // ans = [12, 10, 16, 13]
-        int k2 = 0; // ans = [0, 0, 0, 0]
+        // int k = 3; // ans = [12, 10, 16, 13]
+        // int k2 = 0; // ans = [0, 0, 0, 0]
         int k3 = -2; // ans = [5, 9, 12, 8]
 
         System.out.println(Arrays.toString(decrypt(code, k3)));

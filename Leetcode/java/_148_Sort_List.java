@@ -3,6 +3,23 @@
 import java.util.ArrayList;
 import java.util.Collections;
 
+class ListNode {
+    int val;
+    ListNode next;
+
+    ListNode() {
+    }
+
+    ListNode(int val) {
+        this.val = val;
+    }
+
+    ListNode(int val, ListNode next) {
+        this.val = val;
+        this.next = next;
+    }
+}
+
 public class _148_Sort_List {
     public ListNode sortListNaive(ListNode head) {
         // Naive solution - store the values in an array and then sort it
