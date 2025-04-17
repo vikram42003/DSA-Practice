@@ -1,2 +1,2 @@
 # DSA-Practice
-A repo which contains all my dsa problem solutions and stuff done in Java and Python (and sometimes Typescript)
+A repo which contains all my dsa problem solutions and stuff done in Java, Python and Typescript.
