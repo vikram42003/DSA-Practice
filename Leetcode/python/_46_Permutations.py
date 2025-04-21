@@ -54,6 +54,49 @@ class Solution:
 
         return res
 
+    # Iterative version - Time = O(n! * n^2) - Space = O(n! * n)
+    def permuteIterative(self, nums: List[int]) -> List[List[int]]:
+        res = [[]]
+        
+        for num in nums:
+            new_perms = []
+            for p in res:
+                for i in range(len(p) + 1):
+                    copy = p.copy()
+                    copy.insert(i, num)
+                    new_perms.append(copy)
+            res = new_perms
+
+        return res
+
 
 test = Solution()
-print(test.permute([1, 2, 3]))
+# ans = [[1, 2, 3], [2, 1, 3], [2, 3, 1], [3, 2, 1], [3, 1, 2], [1, 3, 2]]
+print(test.permuteIterative([1, 2, 3]))
+# ans = [
+#     [5, 4, 6, 2],
+#     [5, 4, 2, 6],
+#     [5, 6, 4, 2],
+#     [5, 6, 2, 4],
+#     [5, 2, 4, 6],
+#     [5, 2, 6, 4],
+#     [4, 5, 6, 2],
+#     [4, 5, 2, 6],
+#     [4, 6, 5, 2],
+#     [4, 6, 2, 5],
+#     [4, 2, 5, 6],
+#     [4, 2, 6, 5],
+#     [6, 5, 4, 2],
+#     [6, 5, 2, 4],
+#     [6, 4, 5, 2],
+#     [6, 4, 2, 5],
+#     [6, 2, 5, 4],
+#     [6, 2, 4, 5],
+#     [2, 5, 4, 6],
+#     [2, 5, 6, 4],
+#     [2, 4, 5, 6],
+#     [2, 4, 6, 5],
+#     [2, 6, 5, 4],
+#     [2, 6, 4, 5],
+# ]
+print(test.permuteIterative([5, 4, 6, 2]))
