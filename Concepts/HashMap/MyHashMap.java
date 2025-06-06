@@ -60,6 +60,7 @@ class LinkedList<K, V> {
 class MyHashMap<K, V> {
     private LinkedList<K, V>[] map;
     private V nullVal;
+    private boolean isThereANullKey;
     private int curSize;
 
     @SuppressWarnings("unchecked")
@@ -69,6 +70,11 @@ class MyHashMap<K, V> {
     }
 
     public void put(K key, V value) {
+        if (key == null) {
+            insertNullKey(value);
+            return;
+        }
+
         int hash = key.hashCode();
         hash = hash < 0 ? -hash : hash;
 
@@ -95,6 +101,75 @@ class MyHashMap<K, V> {
         }
 
         return null;
+    }
+
+    public V remove(K key) {
+        if (key == null) {
+            if (this.isThereANullKey) {
+                V toReturn = this.nullVal;
+                this.isThereANullKey = false;
+                this.curSize--;
+                return toReturn;
+            }
+            return null;
+        }
+
+        int hash = key.hashCode();
+        hash = hash < 0 ? -hash : hash;
+        int index = hash % this.map.length;
+
+        LinkedList<K, V> curr = this.map[index];
+        LinkedList<K, V> prev = null;
+
+        while (curr != null) {
+            if (curr.key.equals(key)) {
+                V toReturn = curr.value;
+                if (prev == null) {
+                    this.map[index] = curr.next;
+                } else {
+                    prev.next = curr.next;
+                }
+                this.curSize--;
+                return toReturn;
+            }
+            prev = curr;
+            curr = curr.next;
+        }
+
+        return null;
+    }
+
+    public boolean containsKey(K key) {
+        if (key == null) {
+            return isThereANullKey;
+        }
+
+        int hash = key.hashCode();
+        hash = hash < 0 ? -hash : hash;
+        int index = hash % this.map.length;
+
+        LinkedList<K, V> curr = this.map[index];
+
+        while (curr != null) {
+            if (curr.key.equals(key)) {
+                return true;
+            }
+            curr = curr.next;
+        }
+
+        return false;
+    }
+
+    public int size() {
+        return this.curSize;
+    }
+
+    private void insertNullKey(V value) {
+        if (!isThereANullKey) {
+            curSize++;
+            isThereANullKey = true;
+        }
+        nullVal = value;
     }
 
     private void insert(int index, K key, V value) {
@@ -125,7 +200,7 @@ class MyHashMap<K, V> {
         LinkedList<K, V>[] newList = new LinkedList[this.map.length * 2];
 
         this.map = newList;
-        this.curSize = 0;
+        this.curSize = isThereANullKey ? 1 : 0;
 
         for (LinkedList<K, V> l : oldList) {
             while (l != null) {
@@ -134,6 +209,7 @@ class MyHashMap<K, V> {
                 int index = hash % newList.length;
 
                 this.insert(index, l.key, l.value);
+                l = l.next;
             }
         }
     }
