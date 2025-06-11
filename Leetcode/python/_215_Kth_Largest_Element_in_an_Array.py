@@ -36,12 +36,12 @@ class Solution:
     # Also, here we'll sort the list in ascending order
     # We need to find the kth largest element, if we sort the list in ascending order, thats the (len(nums) - k) element from the right
     # We take a pivot (rightmost element in this case) and the sort the list according to that
-    # iterate from left -> if nums[i] < pivot then swap it with index j and increment j, if nums[i] > pivot then leave it alone
-    # after iterating swap pivot with nums[j], now EVERY ELEMENT to the left of nums[j] is smaller than it, and every element to
-    # its right is bigger than it, in other words we can say that it is GUARENTEED that nums[j] is at its correct position
-    # Now if j == k then we've found the element, if j < k then we need to do this same operation to the left of the list, otherwise
+    # iterate from left -> if nums[i] < pivot then swap it with index cur and increment cur, if nums[i] > pivot then leave it alone
+    # after iterating swap pivot with nums[cur], now EVERY ELEMENT to the left of nums[cur] is smaller than it, and every element to
+    # its right is bigger than it, in other words we can say that it is GUARENTEED that nums[cur] is at its correct position
+    # Now if cur == k then we've found the element, if cur < k then we need to do this same operation to the left of the list, otherwise
     # we need to do it to the right of the list
-    # do that until j == k and we would have found the kth largest element
+    # do that until cur == k and we would have found the kth largest element
 
     # NOTE - if the array is already in ascending order like - [1, 2, 3, 4, 5] then the time complexity of the algorithm will
     # be n^2 cause we'll have to eliminate the rightmost element one by one while checking each element (n - eliminated elementes) times
@@ -73,6 +73,35 @@ class Solution:
                 return quick_select(l, cur - 1)
 
         return quick_select(l, r)
+
+    # Quick Select - 3 Way Partitioning Version - Time = Θ(n) and O(n^2) - Space = O(1)
+
+    def findKthLargest(self, nums: List[int], k: int) -> int:
+        k = len(nums) - k
+
+        def quick_select(left, right):
+            pivot = nums[right]
+            low = left
+            high = right
+
+            while low <= high:
+                while low <= high and nums[low] < pivot:
+                    low += 1
+                while low <= high and nums[high] > pivot:
+                    high -= 1
+                if low <= high:
+                    nums[low], nums[high] = nums[high], nums[low]
+                    low += 1
+                    high -= 1
+
+            if k <= high:
+                return quick_select(left, high)
+            elif k >= low:
+                return quick_select(low, right)
+            else:
+                return nums[k]
+
+        return quick_select(0, len(nums) - 1)
 
 
 test = Solution()
