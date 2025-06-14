@@ -15,9 +15,12 @@ class Solution:
                 heappush(heap, (dist, x, y))
 
         return [(x, y) for dist, x, y in heap]
-    
-    # 
+
+    # Quick Select - Time = Θ(n) and O(n^2) - Space = O(n)
     def kClosest(self, points: List[List[int]], k: int) -> List[List[int]]:
+        if len(points) == k:
+            return points
+
         dist = []
         for idx, p in enumerate(points):
             d = (p[0] ** 2) + (p[1] ** 2)
@@ -29,9 +32,9 @@ class Solution:
             pivot = dist[right][0]
 
             while low <= high:
-                while dist[low][0] < pivot:
+                while low <= high and dist[low][0] < pivot:
                     low += 1
-                while dist[high][0] > pivot:
+                while low <= high and dist[high][0] > pivot:
                     high -= 1
                 if low <= high:
                     temp = dist[low]
@@ -52,3 +55,9 @@ class Solution:
                 return res
 
         return quick_select(0, len(points) - 1)
+
+
+test = Solution()
+arr = [[0, 1], [1, 0]]
+k = 2
+print(test.kClosest(arr, k))
