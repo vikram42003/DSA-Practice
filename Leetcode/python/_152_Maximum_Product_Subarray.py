@@ -2,52 +2,55 @@ from typing import List
 
 
 class Solution:
+    # We need to find the CONTIGUOS subarray with the largest product
+    # And nums may have negatives in it
+    # BUT
+    #   - If there are even number of negatives in nums, then product oall elements of nums would be the product of all its elements
+    #   - (considering there are no zeros in the middle, otherwise the array would be divided)
+    #
+    #   - If there are odd number of negatives then we need to exclude one of the negatives at and after/before the rightmost 
+    #     and the leftmost negative number   
+    #   - remember, we need there to be even number of negatives and we cannot remove any of the negative in the middle (cause
+    #     the array needs to stay contiguos)
+    
+    #   - If we encounter 0 in nums then reset the counting variables
     def maxProduct(self, nums: List[int]) -> int:
-        max_max, cur_max, cur_max_neg = nums[0], 1, nums[0]
-        # Iterate over all numbers
-        i = 0
-        while i < len(nums):
-            if cur_max == 0:
-                cur_max = 1
+        max_max = nums[0]
+        ignoring_leftmost_negative = 0
+        ignoring_rightmost_negative = 0
+        even_negatives = 1
+        
+        for n in nums:
+            if n == 0:
+                max_max = max(max_max, ignoring_leftmost_negative, ignoring_rightmost_negative, even_negatives, 0)
+                ignoring_leftmost_negative = 0
+                ignoring_rightmost_negative = 0
+                even_negatives = 1
             
-            cur_max *= nums[i]
-            max_max = max(max_max, cur_max, cur_max_neg)
-            i += 1
+            if n < 0:
+                ignoring_rightmost_negative = even_negatives
             
-            
-            
-            
-            
-            
-            
-            # If cur_max is 0, meaning we multiplied by 0 in prev iteration then reset cur_max to 1
-            if cur_max == 0:
-                cur_max = 1
-            # If cur_max is negative, meaning we multiplied by a negative number in the prev iteration, then keep multiplying it with the next number until it becomes positive or if we run out of numbers
-            elif cur_max < 0:
-                temp = cur_max
-                while i < len(nums) and temp < 0:
-                    temp *= nums[i]
-                    i += 1
+            even_negatives *= n
+            ignoring_leftmost_negative *= n
 
-                # We found another negative number, which makes cur_max positive
-                if temp > 0:
-                    cur_max = temp
-                    max_max = max(max_max, cur_max)
-                # We did not find another negative
-                else:
-                    cur_max = 1
-                    max_max = max(max_max, temp)
-            # Continue multiplying numbers as normal and maintaining cur_max and max_max
-            else:
-                cur_max *= nums[i]
-                max_max = max(max_max, cur_max)
-                
-            i += 1
-        return max_max
+            if ignoring_leftmost_negative == 0 and n < 0:
+                ignoring_leftmost_negative = 1
 
+        return max(max_max, ignoring_leftmost_negative, ignoring_rightmost_negative, even_negatives)
 
 test = Solution()
+# ans = 6
+arr1 = [2, 3, -2, 4]
+# ans = 0
+arr2 = [-2, 0, -1]
 # ans = 32
-arr = [-2, 2, 2, 2, 2, -1]
-print(test.maxProduct(arr))
+arr3 = [-2, 2, 2, 2, 2, -1]
+# ans = 48
+arr4 = [-2, 2, 2, -2, 2, -3]
+# ans = 960
+arr5 = [-1, 4, -4, 5, -2, -1, -1, -2, -3]
+# print(test.maxProduct(arr1))
+print(test.maxProduct(arr2))
+# print(test.maxProduct(arr3))
+# print(test.maxProduct(arr4))
+# print(test.maxProduct(arr5))
