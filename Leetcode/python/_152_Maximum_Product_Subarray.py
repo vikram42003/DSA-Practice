@@ -21,6 +21,7 @@ class Solution:
         even_negatives = 1
         
         for n in nums:
+            
             if n == 0:
                 max_max = max(max_max, ignoring_leftmost_negative, ignoring_rightmost_negative, even_negatives, 0)
                 ignoring_leftmost_negative = 0
