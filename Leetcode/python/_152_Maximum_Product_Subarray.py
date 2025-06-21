@@ -80,6 +80,24 @@ class Solution:
                 prod = 1
 
         return max_max
+    
+    # Dymanic Programming - Time = O(2n) = Space - O(1)
+    # We keep track of the maximum and the minimum product of the subarray we're considering till now, because if we encounter a
+    # negative that can turn our maximum product to minimum and minimum product to maximum, so we keep track of that while also
+    # keeping track of what our global max is
+    # Also we dont need to do anything special for n == 0 because if n == 0 then "(n * max_val, n * min_val, n)" or "(tmp, n * min_val, n)"
+    # would all be (0, 0, 0) effectively resetting all values, and in the next loop max_val val and min_val would be set to n
+    def maxProduct(self, nums: List[int]) -> int:
+        max_max = max(nums)
+        max_val, min_val = 1, 1
+
+        for n in nums:
+            tmp = n * max_val
+            max_val = max(n * max_val, n * min_val, n)
+            min_val = min(tmp, n * min_val, n)
+            max_max = max(max_max, max_val)
+
+        return max_max
 
 
 test = Solution()
