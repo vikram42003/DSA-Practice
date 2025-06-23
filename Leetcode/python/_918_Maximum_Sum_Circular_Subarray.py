@@ -12,9 +12,15 @@ class Solution:
     # the elements that bring the total down
     # So if we eliminate the biggest contiguos group of elements that bring the total down then
     # we'll automatically have the biggest array!
+    
     # Also keep note that there might be many distributed elements that bring the total down
     # But we need to keep the subarray contiguos, so we only eliminate the biggest "obstacle"
     # which is the minimim subarray
+    
+    # Also another thing to note is that if all elements of the array are negative then total
+    # will be equal to minimum subarray and total - min subarray will give us the incorrect answer
+    # 0, in that case we can just check if maximum subarray is negative, if it is then just return
+    # that since that will contain the greatest element in the all negative array
     def maxSubarraySumCircular(self, nums: List[int]) -> int:
         max_max = nums[0]
         min_min = nums[0]
