@@ -2,45 +2,6 @@ from typing import List
 
 
 class Solution:
-    # Flatten matrix and Monotonic Stack - Time = O(n*m) - Space = O(m)
-    
-    # We kind go top to botton row by row, adding up values in each column, if a column at
-    # the current level contains 0 then set the whole row to 0, else increment column value 
-    # by 1, and find biggest rect in histogram in each loop
-    def maximalRectangle(self, matrix: List[List[str]]) -> int:
-        max_max = 0
-        cols = [0] * len(matrix[0])
-
-        for row in matrix:
-            for i in range(len(row)):
-                if row[i] == "1":
-                    cols[i] += 1
-                else:
-                    cols[i] = 0
-
-            max_max = max(max_max, self.biggestRectInHist(cols))
-
-        return max_max
-
-    def biggestRectInHist(self, cols: List[int]) -> int:
-        n = len(cols)
-        max_max = 0
-        stack = []
-
-        for i in range(n + 1):
-            height = cols[i] if i < n else 0
-
-            while stack and height < cols[stack[-1]]:
-                idx = stack.pop()
-                width = i - stack[-1] - 1 if stack else i
-                max_max = max(max_max, cols[idx] * width)
-
-            stack.append(i)
-
-        return max_max
-    
-    
-    # Less Efficient (Older)
     # 2D Kadane Algo Appraoch - Time = O(n*(m^2)) - Space = O(n)
     def maximalRectangle(self, matrix: List[List[str]]) -> int:
         max_max = 0
