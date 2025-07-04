@@ -1,8 +1,29 @@
 from collections import deque
+import heapq
 from typing import List
 
 
 class Solution:
+    # Heap - Time = O(n log k) - Space = O(n)
+    # We create a heap, which will store the descending list of elements and their indices, and we'll lazily check for validity 
+    # of the top value. From that I mean, before adding the top element, we'll check if it lies outside the range of the current
+    # window, and if it does, remove it in a while loop until we reah an element that is the max element within the bounds
+    # of the current window
+    def maxSlidingWindow(self, nums: List[int], k: int) -> List[int]:
+        # Add first k element to the max heap
+        heap = []
+        for i in range(k):
+            heapq.heappush(heap, (-nums[i], i))
+        res = [-heap[0][0]]
+
+        for i in range(k, len(nums)):
+            while heap and heap[0][1] <= i - k:
+                heapq.heappop(heap)            
+            heapq.heappush(heap, (-nums[i], i))
+            res.append(-heap[0][0])
+
+        return res
+    
     # Deque - Time = O(n) - Space = O(n)
     # The idea is - we add all elements to a data strcuture and that data structure must keep them in descending order (MONOTONIC)
     # and we need to move the window, so we need to remove the leftmost element on each iteration, so we need a data structure
