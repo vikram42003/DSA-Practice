@@ -19,3 +19,15 @@ class Solution:
             prev = head
             head = temp
         return prev
+
+    # Recursive - Time = O(n) - Space = O(n)
+    def reverseList(self, head: Optional[ListNode]) -> Optional[ListNode]:
+        def rec(cur, prev):
+            if not cur:
+                return prev
+            else:
+                next = cur.next
+                cur.next = prev
+                return rec(next, cur)
+
+        return rec(head, None)
