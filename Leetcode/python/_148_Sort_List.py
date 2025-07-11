@@ -46,7 +46,7 @@ class Solution:
 
         return head
 
-    # Merge Sort - Time = O(n log n) - Space = O(1)
+    # Bottom Up Merge Sort (Iterative) - Time = O(n log n) - Space = O(1)
     def sortList(self, head: Optional[ListNode]) -> Optional[ListNode]:
         if not head or not head.next:
             return head
