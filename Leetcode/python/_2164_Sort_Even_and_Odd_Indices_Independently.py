@@ -22,3 +22,15 @@ class Solution:
                 break
 
         return nums
+    
+    # Concise and Quicker - Time = O(n log n) - Space = O(n)
+    def sortEvenOdd(self, nums: List[int]) -> List[int]:
+        # Get odd and even parts of the list
+        odd, even = nums[1::2], nums[::2]
+        # Sort and store the odd and even parts and overwrite
+        odd, even = sorted(odd, reverse=True), sorted(even)
+        # Assign the sorted odd and even lists to the odd and even parts of the array
+        # (yes this shit is valid in python, you can even one line this problem with this concept)
+        nums[1::2], nums[::2] = odd, even
+        
+        return nums
