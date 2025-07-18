@@ -11,4 +11,17 @@ class Solution:
                     res[i] += 1
         return res
     
-    
+    # Prefix Sum and Bucket Stuff - Time = O(n) - Space = O(n)
+    def smallerNumbersThanCurrent(self, nums: List[int]) -> List[int]:
+        buckets = [0] * 102
+        for i in range(len(nums)):
+            buckets[nums[i] + 1] += 1
+        
+        for i in range(1, 102):
+            buckets[i] += buckets[i - 1]
+
+        res = []
+        for n in nums:
+            res.append(buckets[n])
+
+        return res
