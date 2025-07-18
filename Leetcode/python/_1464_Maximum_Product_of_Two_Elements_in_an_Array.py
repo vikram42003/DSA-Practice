@@ -10,4 +10,7 @@ class Solution:
                 max_max = max(max_max, (nums[i] - 1) * (nums[j] - 1))
         return max_max
     
-    
+    # Sort (Built in Tim Sort) - Time = O(n log n) - Space = O(n)
+    def maxProduct(self, nums: List[int]) -> int:
+        nums.sort()
+        return (nums[-1] - 1) * (nums[-2] - 1)
