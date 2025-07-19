@@ -1,3 +1,6 @@
+from typing import List
+
+
 class Solution:
     # Sort and Diff - Time = O(n log n) - Space = O(n)
     # The value at seats[i] or students[i] is the actual position of the student or seat, so its

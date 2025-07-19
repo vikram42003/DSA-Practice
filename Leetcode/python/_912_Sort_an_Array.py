@@ -2,6 +2,42 @@ from typing import List
 
 
 class Solution:
+    # Bottom Up MergeSort - Time = O(n log n) - Space = O(1)
+    def sortArray(self, nums: List[int]) -> List[int]:
+        def merge(nums, start, mid, end):
+            temp = []
+            i, j = start, mid
+
+            while i < mid and j < end:
+                if nums[i] < nums[j]:
+                    temp.append(nums[i])
+                    i += 1
+                else:
+                    temp.append(nums[j])
+                    j += 1
+
+            while i < mid:
+                temp.append(nums[i])
+                i += 1
+
+            while j < end:
+                temp.append(nums[j])
+                j += 1
+
+            for n in temp:
+                nums[start] = n
+                start += 1
+
+        step = 1
+        while step < len(nums):
+            for i in range(0, len(nums), step * 2):
+                mid = min(i + step, len(nums))
+                end = min(i + 2 * step, len(nums))
+                merge(nums, i, mid, end)
+            step *= 2
+
+        return nums
+
     # Merge Sort - Time = O(n log n) - Space = O(n)
     def sortArray(self, nums: List[int]) -> List[int]:
         def mergeSort(l, r):
