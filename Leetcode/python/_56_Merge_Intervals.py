@@ -24,7 +24,7 @@ class Solution:
 
         res.append(prev)
         return res
-    
+
     # Sorting - Time = O(n log n) - Space = O(n)
     def merge(self, intervals: List[List[int]]) -> List[List[int]]:
         intervals.sort()
