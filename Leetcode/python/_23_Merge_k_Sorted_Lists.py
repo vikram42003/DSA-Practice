@@ -54,3 +54,53 @@ class Solution:
                 heapq.heappush(heap, (l.next.val, i, l.next))
         
         return dummy.next
+    
+    # (Merge Sort's) Merge - Time = O(n log k) - Space = O(1)
+    def mergeKLists(self, lists: List[Optional[ListNode]]) -> Optional[ListNode]:
+        while len(lists) > 1:
+            list1 = lists.pop(0)
+            list2 = lists.pop(0)
+            combined = self.merge(list1, list2)
+            print_list(combined)
+            lists.append(combined)
+        
+        return lists[0]
+    
+    def merge(self, l1, l2):
+        dummy = cur = ListNode()
+        while l1 and l2:
+            if l1.val < l2.val:
+                cur.next = l1
+                l1 = l1.next
+            else:
+                cur.next = l2
+                l2 = l2.next
+            cur = cur.next
+        
+        if l1:
+            cur.next = l1
+        elif l2:
+            cur.next = l2
+        
+        return dummy.next
+    
+    
+def print_list(node):
+    print('->'.join(map(str, iter_list(node))))
+
+def iter_list(node):
+    while node:
+        yield node.val
+        node = node.next
+        
+test = Solution()
+# ans = [1,1,2,3,4,4,5,6]
+lists = [[1,4,5],[1,3,4],[2,6]]
+linked_lists = []
+for arr in lists:
+    dummy = cur = ListNode()
+    for val in arr:
+        cur.next = ListNode(val)
+        cur = cur.next
+    linked_lists.append(dummy.next)
+print_list(test.mergeKLists(linked_lists))
