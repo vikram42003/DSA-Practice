@@ -13,3 +13,8 @@ class Solution:
                 return word
 
         return ""
+
+    # Oneline
+    # We're calling next for that iterator and passing "" as the default value
+    def firstPalindrome(self, words: List[str]) -> str:
+        return next((word for word in words if word == word[::-1]), "")
