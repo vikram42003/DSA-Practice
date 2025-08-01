@@ -11,7 +11,7 @@ class TreeNode:
 
 
 class Solution:
-    # BFS - Time = O(n) - Space = O(n)
+    # BFS - Time = O(n) - Space = O(h)
     def invertTree(self, root: Optional[TreeNode]) -> Optional[TreeNode]:
         if not root:
             return
