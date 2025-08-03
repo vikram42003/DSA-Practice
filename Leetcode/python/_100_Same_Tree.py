@@ -41,3 +41,12 @@ class Solution:
                 return False
 
         return True
+
+    # DFS - Time = O(n) - Space = O(h)
+    def isSameTree(self, p: Optional[TreeNode], q: Optional[TreeNode]) -> bool:
+        if not p and not q:
+            return True
+        elif not p or not q or p.val != q.val:
+            return False
+        else:
+            return self.isSameTree(p.left, q.left) and self.isSameTree(p.right, q.right)
