@@ -13,7 +13,7 @@ class Solution:
 
     # DFS with idx precompute - Time = O(n) - Space = O(n)
     # We map inorder to idx to quickly compute the number of values that come before/after root and iterate in DFS
-    # start and end control the size of elements that belong in left/right subtree
+    # start and end control the size of elements that belong in left/right subtree, so call build(0, len(preorder) - 1)
     # elements from start to mid - 1 belog to left subtree, mid + 1 to end for right subtree
     # if start == end, then that node is a leaf node and will be added as such
     def buildTree(self, preorder: List[int], inorder: List[int]) -> Optional[TreeNode]:
@@ -39,7 +39,7 @@ class Solution:
     # DFS style tree building - Time = O(n^2) - Space = O(n)
     # inorder will tell us the order of occurence of elements from left to right
     # preorder will tell us current.val, then all the elements in the left subtree, then all the elements in the right subtree (through recursion)
-    # With that info we can just take preorder[0] as current val, find it in preorder, now the umber of values before it will belong to
+    # With that info we can just take preorder[0] as current val, find it in preorder, now the number of values before it will belong to
     # the left subtree, and values after it will belong to the right subtree
     # So now we can just extract the left subtree relevant portion of preorder and inorder and run buildTree on that recursively (do the same for right subtree)
     def buildTree(self, preorder: List[int], inorder: List[int]) -> Optional[TreeNode]:
