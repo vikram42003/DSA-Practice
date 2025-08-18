@@ -7,6 +7,54 @@ class TreeNode(object):
 
 
 class Codec:
+    # Preorder Optimized - Time = O(n) - Space = O(n)
+    # Preorder, postorder or bfs (null vals included) will give us enough information to rebuild the tree
+    # Inorder wont have vals in proper order, bfs would require extra space and postorder would need us to interate in reverse order
+    # So preorder is a natural fit here 
+    def serialize(self, root):
+        """Encodes a tree to a single string.
+        
+        :type root: TreeNode
+        :rtype: str
+        """
+        vals = []
+
+        def preorder(node):
+            if not node:
+                vals.append("N")
+                return
+            vals.append(str(node.val))
+            preorder(node.left)
+            preorder(node.right)
+
+        preorder(root)
+        return ",".join(vals)
+        
+
+    def deserialize(self, data):
+        """Decodes your encoded data to tree.
+        
+        :type data: str
+        :rtype: TreeNode
+        """
+        # We can use an array and idx varaible here, but iterator would be more concise
+        vals = iter(data.split(","))
+
+        def preorder():
+            val = next(vals)
+            if val == "N":
+                return None
+
+            root = TreeNode(int(val))
+            root.left = preorder()
+            root.right = preorder()
+
+            return root
+        
+        return preorder()
+
+
+
     # Unoptimized but does the job - Time = O(n^2) - Space = O(n)
     # Strings are immuatable in python so rebuilding strings (and parsing) makes it pretty slow
     def serialize(self, root):
