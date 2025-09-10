@@ -1,4 +1,5 @@
 from heapq import heappush, heappushpop
+import random
 from typing import List
 
 
@@ -16,7 +17,7 @@ class Solution:
 
         return [(x, y) for dist, x, y in heap]
 
-    # Quick Select - Time = Θ(n) and O(n^2) - Space = O(n)
+    # (Not optimal) Quick Select - Time = Θ(n) and O(n^2) - Space = O(n)
     def kClosest(self, points: List[List[int]], k: int) -> List[List[int]]:
         if len(points) == k:
             return points
@@ -56,8 +57,53 @@ class Solution:
 
         return quick_select(0, len(points) - 1)
 
+    # Quick Select (Hoare) in-place - Time = Θ(n) and O(n^2) - Space = O(1)
+    def kClosest(self, points: List[List[int]], k: int) -> List[List[int]]:
+        if len(points) == k:
+            return points
+
+        def dist(idx):
+            return points[idx][0] ** 2 + points[idx][1] ** 2
+
+        def partition(l, r):
+            pivot_idx = random.randint(l, r)
+            pivot_dist = dist(pivot_idx)
+
+            low, high = l - 1, r + 1
+
+            while True:
+                low += 1
+                while dist(low) < pivot_dist:
+                    low += 1
+                high -= 1
+                while dist(high) > pivot_dist:
+                    high -= 1
+
+                if low >= high:
+                    return high
+                
+                points[low], points[high] = points[high], points[low]
+
+        l, r = 0, len(points) - 1
+        target = k - 1
+
+        while l < r:
+            split = partition(l, r)
+            if target <= split:
+                r = split
+            else:
+                l = split + 1
+
+        return points[:k]
+
+
 
 test = Solution()
-arr = [[0, 1], [1, 0]]
-k = 2
-print(test.kClosest(arr, k))
+# ans = [[0, 1], [1, 0]]
+# arr = [[0, 1], [1, 0]]
+# k = 2
+# ans = [[-2, 2]]
+arr2 = [[1, 3], [-2, 2]]
+k2 = 1
+# print(test.kClosest(arr, k))
+print(test.kClosest(arr2, k2))
