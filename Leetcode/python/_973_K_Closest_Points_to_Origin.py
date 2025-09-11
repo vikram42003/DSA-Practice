@@ -62,34 +62,37 @@ class Solution:
         if len(points) == k:
             return points
 
-        def dist(idx):
-            return points[idx][0] ** 2 + points[idx][1] ** 2
+        def dist(i):
+            return points[i][0] ** 2 + points[i][1] ** 2
 
         def partition(l, r):
-            pivot_idx = random.randint(l, r)
-            pivot_dist = dist(pivot_idx)
+            pivot = random.randint(l, r)
+            pivot_dist = dist(pivot)
 
-            low, high = l - 1, r + 1
+            low, high = l, r
 
             while True:
-                low += 1
                 while dist(low) < pivot_dist:
                     low += 1
-                high -= 1
                 while dist(high) > pivot_dist:
                     high -= 1
-
+                
                 if low >= high:
                     return high
                 
                 points[low], points[high] = points[high], points[low]
-
+                low += 1
+                high -= 1
+            
         l, r = 0, len(points) - 1
         target = k - 1
 
         while l < r:
             split = partition(l, r)
-            if target <= split:
+
+            if target == split:
+                break
+            elif target < split:
                 r = split
             else:
                 l = split + 1
