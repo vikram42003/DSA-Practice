@@ -1,4 +1,5 @@
 from heapq import heapify, heappop
+import random
 from typing import List
 
 
@@ -102,6 +103,42 @@ class Solution:
                 return nums[k]
 
         return quick_select(0, len(nums) - 1)
+
+    # In Place Quick Select (Hoare's) - Time = O(n) - Space = (1)
+    def findKthLargest(self, nums: List[int], k: int) -> int:
+        def partition(l, r):
+            pivot = nums[random.randint(l, r)]
+            i, j = l, r
+
+            while True:
+                while nums[i] > pivot:
+                    i += 1
+                while nums[j] < pivot:
+                    j -= 1
+                
+                if i >= j:
+                    return j
+                
+                nums[i], nums[j] = nums[j], nums[i]
+                i += 1
+                j -= 1
+        
+        l, r = 0, len(nums) - 1
+        target = k - 1
+    
+        while l < r:
+            split = partition(l, r)
+
+            # We cant do target == split because hoare's quicksort guarentees that elements to the left of split will be lesser than whatever partition we picked, it does not necessarily mean that the element at partition will be the idx number split greatest element in the list
+            # But this way we keep sorting it until it takes its correct position
+
+            # We can’t stop at target == split because in Hoare’s partition scheme, the pivot isn’t guaranteed to be at its final sorted position. Instead, the returned index split just ensures that everything on the left side is ≥ pivot and everything on the right side is ≤ pivot. So we need to continue narrowing the search range until l == r, at which point the element at nums[target] is the k-th largest.
+            if target <= split:
+                r = split
+            else:
+                l = split + 1
+
+        return nums[target]
 
 
 test = Solution()
