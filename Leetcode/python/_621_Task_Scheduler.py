@@ -4,7 +4,7 @@ from typing import Counter, List
 
 
 class Solution:
-    # Dicts, MaxHeap and DQ - Time = O(n * log k) - Space - O(n)
+    # Dict, MaxHeap and DQ - Time = O(n * log k) - Space - O(n)
 
     # We first count the number of occurences of each letter with a dict (using inbuilt python func)
     # Then we take only the count of values and heapify it, because we need to wait n time before doing the same task again so we start by the
