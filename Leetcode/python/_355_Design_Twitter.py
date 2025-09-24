@@ -3,6 +3,119 @@ import time
 from typing import List
 
 
+# Linked Lists and Heaps - Time = O(n log n) - Space = O(n)
+# Store the tweets as linked lists and then when getting the top 10 latest, put the heads of users tweets and all followers tweets in a max heap
+# and then pop the first 10, that will be the top 10 latest tweets, and we'll only count 10 times
+# The Space and time are O(n log n) and O(n) only because we're using heaps and may do heap operations n times, and we store heaps and linked lists,
+# and thats n space taken
+class User:
+    def __init__(self, userId):
+        self.userId = userId
+        self.tweets = None
+        self.followers = set()
+        self.following = set()
+    
+    def __repr__(self):
+        return f"User {{\n userId: {self.userId},\n tweets: {self.tweets},\n followers: {self.followers},\n following: {self.following}\n }}"
+
+    def addTweet(self, time, tweetId):
+        # We store each tweet as latest tweet first
+        if not self.tweets:
+            self.tweets = Tweet(time, tweetId)
+            return
+        
+        newTweet = Tweet(time, tweetId)
+        newTweet.next = self.tweets
+        self.tweets = newTweet
+    
+
+class Tweet:
+    def __init__(self, time, tweetId):
+        self.time = time
+        self.tweetId = tweetId
+        self.next = None
+
+
+class Twitter:
+
+    def __init__(self):
+        self.users = {}
+        self.time = 0
+
+    def postTweet(self, userId: int, tweetId: int) -> None:
+        if userId not in self.users:
+            self.users[userId] = User(userId)
+        
+        self.users[userId].addTweet(self.time, tweetId)
+        self.time += 1
+
+    def getNewsFeed(self, userId: int) -> List[int]:
+        if userId not in self.users:
+            return []
+
+        user = self.users[userId]
+        following = user.following
+
+        maxHeap = []
+        
+        # Put the heads of user.tweets and following user's tweets
+        if user.tweets:
+            heapq.heappush(maxHeap, (-user.tweets.time, user.tweets))
+        for followingId in following:
+            f = self.users[followingId]
+            if f.tweets:
+                heapq.heappush(maxHeap, (-f.tweets.time, f.tweets))
+
+        ans = []
+        i = 0
+        while i < 10 and maxHeap:
+            # Pop the top one 10 times, that'll give us the top 10 tweets
+            popped = heapq.heappop(maxHeap)
+            ans.append(popped[1].tweetId)
+
+            nextOne = popped[1].next
+            if nextOne:
+                heapq.heappush(maxHeap, (-nextOne.time, nextOne))
+
+            i += 1
+        
+        return ans
+        
+
+    def follow(self, followerId: int, followeeId: int) -> None:
+        if followerId == followeeId:
+            return
+
+        if followerId not in self.users:
+            self.users[followerId] = User(followerId)
+        if followeeId not in self.users:
+            self.users[followeeId] = User(followeeId)
+        
+        self.users[followerId].following.add(followeeId)
+        self.users[followeeId].followers.add(followerId)
+
+
+    def unfollow(self, followerId: int, followeeId: int) -> None:
+        if followerId == followeeId:
+            return
+
+        if followerId not in self.users:
+            self.users[followerId] = User(followerId)
+        if followeeId not in self.users:
+            self.users[followeeId] = User(followeeId)
+        
+        self.users[followerId].following.discard(followeeId)
+        self.users[followeeId].followers.discard(followerId)
+        
+
+
+# Your Twitter object will be instantiated and called as such:
+# obj = Twitter()
+# obj.postTweet(userId,tweetId)
+# param_2 = obj.getNewsFeed(userId)
+# obj.follow(followerId,followeeId)
+# obj.unfollow(followerId,followeeId)
+
 class User:
     def __init__(self, userId):
         self.userId = userId
