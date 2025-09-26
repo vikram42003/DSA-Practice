@@ -1,6 +1,33 @@
 import heapq
 
 
+# 2 Heaps (Elegant) - Time = O(log n), Space = O(n)
+# Use a maxHeap for the smaller half of numbers and a minHeap for the larger half.
+# Always insert into maxHeap first (as negative), then move its largest element to minHeap
+# so that all elements in maxHeap <= all elements in minHeap.
+# If minHeap becomes larger, move its smallest back to maxHeap to maintain size balance
+# (maxHeap can have equal size or one extra element).
+# Median is either the top of maxHeap (odd total size) or the average of both tops (even size).
+class MedianFinder:
+
+    def __init__(self):
+        self.maxHeap = []
+        self.minHeap = []
+
+    def addNum(self, num: int) -> None:
+        heapq.heappush(self.maxHeap, -num)
+        heapq.heappush(self.minHeap, -heapq.heappop(self.maxHeap))
+
+        if len(self.maxHeap) < len(self.minHeap):
+            heapq.heappush(self.maxHeap, -heapq.heappop(self.minHeap))
+
+    def findMedian(self) -> float:
+        if len(self.maxHeap) > len(self.minHeap):
+            return -self.maxHeap[0]
+        else:
+            return (-self.maxHeap[0] + self.minHeap[0]) / 2
+
+
 # 2 Heaps - Time = O(log n) - Space = O(n)
 # We are essentially gonna divide the list into two sorted halves in non decreasing order with two heaps -
 # 1) Left Heap will be a max heap because we need to check the rightmost element for mantaining
