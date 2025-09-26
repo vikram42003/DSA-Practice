@@ -14,7 +14,7 @@ class User:
         self.tweets = None
         self.followers = set()
         self.following = set()
-    
+
     def __repr__(self):
         return f"User {{\n userId: {self.userId},\n tweets: {self.tweets},\n followers: {self.followers},\n following: {self.following}\n }}"
 
@@ -23,11 +23,11 @@ class User:
         if not self.tweets:
             self.tweets = Tweet(time, tweetId)
             return
-        
+
         newTweet = Tweet(time, tweetId)
         newTweet.next = self.tweets
         self.tweets = newTweet
-    
+
 
 class Tweet:
     def __init__(self, time, tweetId):
@@ -45,7 +45,7 @@ class Twitter:
     def postTweet(self, userId: int, tweetId: int) -> None:
         if userId not in self.users:
             self.users[userId] = User(userId)
-        
+
         self.users[userId].addTweet(self.time, tweetId)
         self.time += 1
 
@@ -57,7 +57,7 @@ class Twitter:
         following = user.following
 
         maxHeap = []
-        
+
         # Put the heads of user.tweets and following user's tweets
         if user.tweets:
             heapq.heappush(maxHeap, (-user.tweets.time, user.tweets))
@@ -78,9 +78,8 @@ class Twitter:
                 heapq.heappush(maxHeap, (-nextOne.time, nextOne))
 
             i += 1
-        
+
         return ans
-        
 
     def follow(self, followerId: int, followeeId: int) -> None:
         if followerId == followeeId:
@@ -90,10 +89,9 @@ class Twitter:
             self.users[followerId] = User(followerId)
         if followeeId not in self.users:
             self.users[followeeId] = User(followeeId)
-        
+
         self.users[followerId].following.add(followeeId)
         self.users[followeeId].followers.add(followerId)
-
 
     def unfollow(self, followerId: int, followeeId: int) -> None:
         if followerId == followeeId:
@@ -103,10 +101,9 @@ class Twitter:
             self.users[followerId] = User(followerId)
         if followeeId not in self.users:
             self.users[followeeId] = User(followeeId)
-        
+
         self.users[followerId].following.discard(followeeId)
         self.users[followeeId].followers.discard(followerId)
-        
 
 
 # Your Twitter object will be instantiated and called as such:
@@ -115,6 +112,7 @@ class Twitter:
 # param_2 = obj.getNewsFeed(userId)
 # obj.follow(followerId,followeeId)
 # obj.unfollow(followerId,followeeId)
+
 
 class User:
     def __init__(self, userId):
@@ -125,6 +123,7 @@ class User:
 
     def __repr__(self):
         return f"User {{\n userId: {self.userId},\n tweets: {self.tweets},\n followers: {self.followers},\n following: {self.following}\n }}"
+
 
 # Dicts, Heaps and Sorting - Time = O(n) - Space = O(n)
 # the heap has a fixed size of 10 so it cuts down our time and space greatly
