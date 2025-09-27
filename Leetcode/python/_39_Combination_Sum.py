@@ -29,11 +29,29 @@ class Solution:
             rec(i + 1, rsum)
 
         rec(0, target)
-        
+
         return res
-    
-    
-    
+
+    # Same as above but uses a for loop
+    def combinationSum(self, candidates: List[int], target: int) -> List[List[int]]:
+        res, curr, n = [], [], len(candidates)
+
+        def rec(i, rsum):
+            if rsum == 0:
+                res.append(curr[:])
+                return
+            elif rsum < 0 or i >= n:
+                return
+
+            for j in range(i, n):
+                curr.append(candidates[j])
+                rec(j, rsum - candidates[j])
+                curr.pop()
+
+        rec(0, target)
+
+        return res
+
     def combinationSum(self, candidates: List[int], target: int) -> List[List[int]]:
         ans = []
         curr = []
