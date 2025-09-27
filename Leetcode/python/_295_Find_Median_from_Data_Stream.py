@@ -2,12 +2,12 @@ import heapq
 
 
 # 2 Heaps (Elegant) - Time = O(log n), Space = O(n)
-# Use a maxHeap for the smaller half of numbers and a minHeap for the larger half.
-# Always insert into maxHeap first (as negative), then move its largest element to minHeap
-# so that all elements in maxHeap <= all elements in minHeap.
-# If minHeap becomes larger, move its smallest back to maxHeap to maintain size balance
-# (maxHeap can have equal size or one extra element).
-# Median is either the top of maxHeap (odd total size) or the average of both tops (even size).
+Use a maxHeap for the smaller half of numbers and a minHeap for the larger half.
+Always insert into maxHeap first (as negative), then move its largest element to minHeap
+so that all elements in maxHeap <= all elements in minHeap.
+If minHeap becomes larger, move its smallest back to maxHeap to maintain size balance
+(maxHeap can have equal size or one extra element).
+Median is either the top of maxHeap (odd total size) or the average of both tops (even size).
 class MedianFinder:
 
     def __init__(self):

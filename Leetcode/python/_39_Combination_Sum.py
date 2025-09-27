@@ -2,6 +2,38 @@ from typing import List
 
 
 class Solution:
+    # Backtracking - Time = (2 ^ n) - Space = O(n)
+    # For each element, we have a choice whether to pick and and keep picking it again and again, or not pick it
+    # So we do a greedy search where we track running sum in rsum and current elements picked in curr
+    # For each element we either add it to curr and rsum and backtrack, or we dont add it and move over to next element and backtrack
+    # If rsum == target then add it to res, or if rsum crosses target or i goes out of bounds, we just return
+    # In the end return the final answer
+    def combinationSum(self, candidates: List[int], target: int) -> List[List[int]]:
+        res, curr, n = [], [], len(candidates)
+
+        def rec(i, rsum):
+            if rsum == 0:
+                res.append(curr[:])
+                return
+            elif rsum < 0 or i >= n:
+                return
+
+            c = candidates[i]
+
+            curr.append(c)
+            rsum -= c
+            rec(i, rsum)
+
+            curr.pop()
+            rsum += c
+            rec(i + 1, rsum)
+
+        rec(0, target)
+        
+        return res
+    
+    
+    
     def combinationSum(self, candidates: List[int], target: int) -> List[List[int]]:
         ans = []
         curr = []
