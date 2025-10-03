@@ -3,6 +3,14 @@ from typing import List
 
 class Solution:
     # Backtracking Optimized - Time = O(3 ^ n) - Space = O(n)
+    # We basically need to run a dfs with backtracking. First find the starting word in the matrix and then run dfs(rowIdx, colIdx, 0)
+    # search from that element and return True if dfs returns true as its final return value, otherwise return False at the end.
+    # Base case will be return True if check and match upto the last letter of word, or  False if `the row or col idx is out of bounds,
+    # or the word does not match, or if its already visited.
+    # Add the current element to a set or mark it in the matrix with "#" to signify we have visited it, then check the top, bottom, left and
+    # right element for the next word match recursively, then de mark it and return the result of the checks we ran.
+    # Optimizations - If word length > matrix size then return False immediately. Count the frequency of all letters in matrix, if frequency
+    # of starting letter is more than ending letter then flip it (since then we'd have to run lesser dfs searches)
     def exist(self, board: List[List[str]], word: str) -> bool:
         rows, cols = len(board), len(board[0])
         # Edge Case: word length is more than matrix size
