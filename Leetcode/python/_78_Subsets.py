@@ -70,6 +70,40 @@ class Solution:
         rec(0)
 
         return res
+    
+    # Bitmasking - Time = O(n * 2^n) - Space = O(n * 2^n)
+    # If we need to generate all subsets, i.e. the result should have n^2 subsets then we can map presence/absense of the element to a bit
+    # We'll count in 0 index
+    # If nums = [1, 2], it'll have 4 or 2^2 or 1<<(2 - 1) combos
+    # NOTE: In python 2^2 == 1<<1 NOT 1<<2
+    # we can mask the presence/absence of the digits to a bitmask where i'th bit maps to i'th element
+    # for [1, 2], rightmost bit maps to 1 and the one left to it maps to 2
+    # (0) 00   =   []     (no bits set so empty array)
+    # (1) 01   =   [1]    (only rightmost bit set so [1])
+    # (2) 10   =   [2]    (and so on)
+    # (3) 11   =   [1, 2]
+    def subsets(self, nums: List[int]) -> List[List[int]]:
+        res, n = [], 2<<(len(nums) - 1)
+
+        # Calculate and add the bitmasked subset for all numbers from 0 to 2**n - 1
+        for i in range(n):
+            res.append(self.bitmaskedSubset(i, nums))
+        
+        return res
+    
+    def bitmaskedSubset(self, i, nums):
+        j, temp = 0, []
+
+        while i > 0:
+            # If rightmost bit is set append the corresponding element to temp
+            if i & 1:
+                temp.append(nums[j])
+            
+            # Increment j and rightshift i to look at the next corresponding element
+            j += 1
+            i >>= 1
+
+        return temp
 
 
 test = Solution()
