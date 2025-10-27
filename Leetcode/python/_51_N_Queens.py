@@ -2,16 +2,20 @@ from typing import List
 
 
 class Solution:
-    # Backtracking - Time = O(n!) - Space = O(n)
-    # Instead of storing queens as a n * n matrix with each row being [".Q.."], we can just save the position of the Queen and pad it with dots when adding to res, greatly saving up space
+    # Backtracking (Optimal Space) - Time = O(n!) - Space = O(n)
+    # Instead of storing queens as a n * n matrix with each row being [".Q.."], we can just save the position of the Queen and pad it with 
+    # dots when adding to res, greatly saving up space
 
     # To ensure that no queens attack each other, we need to handle row, col and diagonal collisions
     # Row: each queen gets her own row
     # Col: before placing a queen, we go over all the previously placed queens and skip the current column if its being used by another queen
-    # Diagonal: we have the row and column positions of all the previously placed queens, so from that we apply "the proprty of a slope" with abs(r2 - r1) == abs(c2 - c1) to check if the current queen and any of the previous queens are in a diagonal collision path
+    # Diagonal: we have the row and column positions of all the previously placed queens, so from that we apply "the proprty of a slope" with 
+    # abs(r2 - r1) == abs(c2 - c1) to check if the current queen and any of the previous queens are in a diagonal collision path
 
-    # (Mathematically, for a line to be considered a slope, at each point, it would be increasing/decreasing along the x/y axis by an EQUAL DEGREE, if thats true, then its 100% a slope)
-    # (For a Diagonal line, the change in rows (abs(row +1 or -1)) must equal the change in columns (abs(cols +1 or -1)) so the check abs(r2 - r1) == abs(c2 - c1) would work)
+    # (Mathematically, for a line to be considered a slope, at each point, it would be increasing/decreasing along the x/y axis by an EQUAL DEGREE,
+    # if thats true, then its 100% a slope)
+    # (For a Diagonal line, the change in rows (abs(row +1 or -1)) must equal the change in columns (abs(cols +1 or -1)) so the check 
+    # abs(r2 - r1) == abs(c2 - c1) would work)
     def solveNQueens(self, n: int) -> List[List[str]]:
         res = []
         queens = [-1] * n
@@ -51,6 +55,64 @@ class Solution:
 
         backtrack(0)
         return res
+    
+    
+    # Backtracking (Optimial Time) - Time = O(n!) - Space = O(n)
+    # Col - what col we place the prev queens
+        
+    # pos - positive diagonal moves up from bottom left to top right, and points along the same
+    # positive diagonal ALWAYS have the same sum therefore (row-1) + (col+1) = row + col
+    #    0   1   2   3   (columns)
+    # 0 [0] [1] [2] [3]
+    # 1 [1] [2] [3] [4]
+    # 2 [2] [3] [4] [5]
+    # 3 [3] [4] [5] [6]
+    # (rows)
+
+    # neg - negative diagonal moves down from top left to bottom right, and points along the same
+    # negative diagonal ALWAYS have the same difference therefore (row+1) - (col+1) = row - col
+    #   0    1    2    3   (columns)
+    # 0 [0]  [-1] [-2] [-3]
+    # 1 [1]  [0]  [-1] [-2]
+    # 2 [2]  [1]  [0]  [-1]
+    # 3 [3]  [2]  [1]  [0]
+    # (rows)
+
+    def solveNQueens(self, n: int) -> List[List[str]]:
+        res = []
+        queens = [-1] * n
+
+        cols, pos, neg = set(), set(), set()
+
+        def rec(row):
+            if row == n:
+                curr = []
+                for q in queens:
+                    curr.append("".join(["Q" if q == i else "." for i in range(n)]))
+                res.append(curr)
+                return
+
+            for col in range(n):
+                # if current [row][col] is a valid spot to place a queen
+                if col not in cols and (row + col) not in pos and (row - col) not in neg:
+                    queens[row] = col
+                    cols.add(col)
+                    pos.add(row + col)
+                    neg.add(row - col)
+
+                    rec(row + 1)
+
+                    queens[row] = -1
+                    cols.remove(col)
+                    pos.remove(row + col)
+                    neg.remove(row - col)
+
+        rec(0)
+        return res
+
+
+
+
 
     def solveNQueens(self, n: int) -> List[List[str]]:
         res = []
