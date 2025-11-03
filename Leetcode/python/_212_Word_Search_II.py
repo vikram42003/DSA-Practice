@@ -22,9 +22,9 @@ class Trie:
 
 class Solution:
     # Trie and DFS - Time = (words * eachWordLength + matrixLength * matrixBreadth * dfsDepth * dfsBreadth) - Time = O(wordLength + stackSpace)
-    # Time: O(N * L + M * W * 4^L)
+    # Time: O(N * L + M * W * 4^D)
     #   - N*L to build the Trie (N=num words, L=max word length)
-    #   - M*W*4^L to search the board (M*W=board size, 4^L=DFS work)
+    #   - M*W*4^D to search the board (M*W=board size, 4^D=DFS work)
     # Space: O(N*L)
     #   - O(N*L) for the Trie (dominant)
     #   - O(L) for the recursion stack
