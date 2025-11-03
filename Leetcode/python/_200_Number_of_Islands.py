@@ -3,10 +3,9 @@ from typing import List
 
 
 class Solution:
-    # DFS - Time = O(n * m * 4^d) - Space = O(n)
-    # Time - n * m = dimensions of the matrix
-    #      - 4 ^ D = all 4 direcyions we can move
-    # Space - n = recursion stack space
+    # DFS - Time = O(r * c) - Space = O(r * c)
+    # Time - r * c = dimensions of the matrix, we mark the visited as "#", so this is basically what it is about
+    # Space - r * c = dimensions of the matrix again, cause if the entire matrix was filled then we'd have to recurse r * c times
 
     # Whenever we encounter an island ("1"), run a dfs with all 4 directions to mark the entire island "#" for visited and increment res. Then go find the next island
     def numIslands(self, grid: List[List[str]]) -> int:
