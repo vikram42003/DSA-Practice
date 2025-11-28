@@ -3,7 +3,52 @@ from typing import List
 
 
 class Solution:
-    # WildCard + BFS - Time = O(n * m ^ 2) - Space = O(n * m)
+    # WildCard + Bi-Directional BFS - Time = O(n * m ^ 2) - Space = O(n * m ^ 2)
+    def ladderLength(self, beginWord: str, endWord: str, wordList: List[str]) -> int:
+        if endWord not in wordList:
+            return 0
+
+        adj = defaultdict(list)
+        wordList.append(beginWord)
+
+        for word in wordList:
+            for j in range(len(word)):
+                wildCardPattern = word[:j] + "*" + word[j + 1 :]
+                adj[wildCardPattern].append(word)
+
+        topSeen = {beginWord}
+        topq = deque([beginWord])
+
+        botSeen = {endWord}
+        botq = deque([endWord])
+
+        res = 1
+
+        while topq and botq:
+            if len(topq) > len(botq):
+                topq, botq = botq, topq
+                topSeen, botSeen = botSeen, topSeen
+
+            for _ in range(len(topq)):
+                cur = topq.popleft()
+
+                for j in range(len(cur)):
+                    wildCardPattern = cur[:j] + "*" + cur[j + 1 :]
+
+                    for n in adj[wildCardPattern]:
+                        if n in botSeen:
+                            return res + 1
+
+                        if n not in topSeen:
+                            topSeen.add(n)
+                            topq.append(n)
+
+                    adj[wildCardPattern] = []
+            res += 1
+
+        return 0
+
+    # WildCard + BFS - Time = O(n * m ^ 2) - Space = O(n * m ^ 2)
     # Where n is the number of words in wordList and m is len(word)
     # For time we iterate over n words a couple times and we run a nested loop for each letter of each word
     # For space we may create m wildcard entries for every single word + n for dict and n for seen
