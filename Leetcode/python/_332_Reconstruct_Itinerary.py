@@ -18,6 +18,8 @@ class Solution:
     # we're at the last airport and no more items are left in adj, then we'll add tickets from stack
     # to res from the last airport all the way to first
     # Then reverse res and return
+
+    # src - https://www.youtube.com/watch?v=5G0HyBhqpQo
     def findItinerary(self, tickets: List[List[str]]) -> List[str]:
         adj = defaultdict(list)
 
