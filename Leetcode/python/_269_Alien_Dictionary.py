@@ -3,7 +3,7 @@ from typing import List
 
 
 class Solution:
-    # Kahn's Topo Sort + Multi Source DFS - Time = O(N * M + C + E) - Space = O(C + E)
+    # Kahn's Topo Sort + Multi Source BFS - Time = O(N * M + C + E) - Space = O(C + E)
     # Where
     #   N = number of words
     #   M = average length of each word
@@ -15,8 +15,8 @@ class Solution:
     # return "bac" or "abc", as long as a comes before c, the answer will be valid.
     # That relationship gives us the idea that we're gonna need to maintain a graph/adjacency list to denote the relations. And whats a good algo for 
     # traversing stuff in some sort of hierarchy of relations, Topo Sort!
-    # We also notice that there could even be a forest possibly, eg [ab, bc, rs, tl] #FINISH EXAMPLE PLS
-    # So we'll use a multi source bfs
+    # We also notice that there could even be a forest possibly, e.g. ["ab", "bc", "rs", "tl"] forms three independent chains (a -> b -> c), (r -> s),
+    # and (t -> l), so the overall graph is a forest. So we'll use a multi source bfs
     
     # Also there are 2 edge cases we need to consider -
     #   Edge Case 1 - w1 is "abcd" and w2 is "abc", so there is no certain way to rank d and therefore according to constrains the list is invalid

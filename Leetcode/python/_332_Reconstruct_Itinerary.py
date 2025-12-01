@@ -31,7 +31,6 @@ class Solution:
         while stack:
             while adj[stack[-1]]:
                 stack.append(adj[stack[-1]].pop())
-                print(stack)
             res.append(stack.pop())
 
         return res[::-1]
