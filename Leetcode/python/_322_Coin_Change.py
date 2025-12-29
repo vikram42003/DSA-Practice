@@ -2,7 +2,7 @@ from typing import List
 
 
 class Solution:
-    # DP (Bottom up and tabulation) - Time = O() - Space = O(n)
+    # DP (Bottom up and tabulation) - Time = O(a * c) - Space = O(a)
     # Initialize the tabulation dp with a base value, lets take it as amount + 1, because that will
     # be the first impossible value since the array will be of size amount + 1, cause we'll add a
     # 0 as a base case
@@ -27,6 +27,39 @@ class Solution:
                     dp[amt] = min(dp[amt], 1 + dp[amt - c])
         
         return dp[amount] if dp[amount] != amount + 1 else -1
+
+    # DP (Top Down and Memo) - Time = O(a * c) - Space = O(a)
+    # First initialize the memo with a base case, that'll be for 0 amt we need 0 coins
+
+    # Create the backtracking func, base case will be if amt < 0 then its an impossible path 
+    # because we cant sum up to a negative value by adding coins so return float("inf"), another 
+    # base case will be if we've already calculated the coins for this amt in memo, then return 
+    # that, otherwise iterate over the coins, initialize a min_val varialbe with impossible val 
+    # like float("inf"), and pick each of the coin and calculate the remaining coins for the 
+    # remaining amount by calling backtrack(amt - c) again, and record whats the minimum and set 
+    # memo[amt] to that and return the same val
+
+    # In the end if the final result of backtrack is inf then its an invalid combination so return
+    # -1, otherwise return res
+    def coinChange(self, coins: List[int], amount: int) -> int:
+        memo = { 0: 0 }
+
+        def backtrack(amt):
+            if amt in memo:
+                return memo[amt]
+            if amt < 0:
+                return float("inf")
+            
+            min_val = float("inf")
+            for c in coins:
+                coinsForRemaining = backtrack(amt - c)
+                min_val = min(min_val, 1 + coinsForRemaining)
+            
+            memo[amt] = min_val
+            return min_val
+        
+        res = backtrack(amount)
+        return res if res != float("inf") else -1
     
     # Backtracking - Time O(n^3) - Space = O(n)
     def coinChange(self, coins: List[int], amount: int) -> int:
