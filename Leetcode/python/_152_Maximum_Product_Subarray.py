@@ -81,6 +81,17 @@ class Solution:
 
         return max_max
     
+    # <New Explanation>
+    # Kadane (DP Bottom Up Tab but without the tab) - Time = O(n) - Space = O(1)
+    # Kadane, but kadane alone isnt enough because if there are even number of negatives, like 
+    # [1,-10,1,-10] then whatever was the max would become the minimum and min would become the max 
+    # so we track min as well
+    # At each step cur_max can either be max of n iteslf, cur_max * n if its positive, or cur_min * n
+    # if its negative since the minimum might become a positive if the min was negative
+    # inverse for cur_min except we store cur_max in temp before we reassign cur_max value during 
+    # current iteration
+    # then just return the global max
+    
     # Dymanic Programming - Time = O(n) = Space - O(1)
     # We keep track of the maximum and the minimum product of the subarray we're considering till now, because if we encounter a
     # negative that can turn our maximum product to minimum and minimum product to maximum, so we keep track of that while also
