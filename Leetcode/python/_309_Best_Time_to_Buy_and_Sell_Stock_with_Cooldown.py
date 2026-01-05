@@ -2,6 +2,49 @@ from typing import List
 
 
 class Solution:
+    # DP (State Machine O(1) Variant) (Bottom Up Tabulation) - Time = O(n) - Space = O(1)
+    # We only ever need the previous days data so we can condense state to O(1)
+    def maxProfit(self, prices: List[int]) -> int:
+        s0, s1, s2 = 0, -prices[0], float("-inf")
+
+        for i in range(1, len(prices)):
+            prev_s0, prev_s1, prev_s2 = s0, s1, s2
+            s0 = max(prev_s0, prev_s2)
+            s1 = max(prev_s1, prev_s0 - prices[i])
+            s2 = prev_s1 + prices[i]
+
+        return max(s0, s2)
+
+    # DP (State Machine) (Bottom Up Tabulation) - Time = O(n) - Space = O(3n) = O(n)
+    def maxProfit(self, prices: List[int]) -> int:
+        n = len(prices)
+        # s0 represents we are resting, from rest we can either keep resting(s0) or get to rest after
+        # selling stock(s2)
+        s0 = [0] * n
+        # s1 represents we are holding stock, we can either keep holding stock(s1), or buy here
+        # from rest(s0)
+        # we buy from resting, and resting gets changed every time we sell so it ensures we
+        # dont stack buy on buys
+        s1 = [0] * n
+        # s2 represents sell, we can only sell from the stock we're holding(s1)
+        s2 = [0] * n
+
+        # On day 0, rest can stay as is, we can buy at price[0], and we cannot sell so -inf
+        s0[0] = 0
+        s1[0] = -prices[0]
+        s2[0] = float("-inf")
+
+        # current day depends on prev day so we start from 1
+        for i in range(1, n):
+            s0[i] = max(s0[i - 1], s2[i - 1])
+            s1[i] = max(s1[i - 1], s0[i - 1] - prices[i])
+            s2[i] = s1[i - 1] + prices[i]
+
+        # In the end we calculate for the last day, which will be max of last we sold, or what we
+        # were carring while resting cause maybe we couldnt find an opportunity to buy and sell again
+        # so were resting
+        return max(s0[-1], s2[-1])
+
     # DP (Top Down Memo) - Time = O(n) - Space = O(n)
     def maxProfit(self, prices: List[int]) -> int:
         # For the state, keys will be (idx, buying(boolean)) and value will be the total
