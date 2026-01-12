@@ -2,11 +2,33 @@ from typing import List
 
 
 class Solution:
+    # DP (Bottom Up) - Time = O(n ^ 3) - Space = O(n ^ 2)
+    # (imagine we're talking about the new nums = [1] + nums + [1] and n is the length of new nums)
+    # Dp state will be n * n, the extra layer will be for replicating the if l > r: return 0 logic from top down
+    # and dp[lo][hi] will track the max coins we could get if we popped i for in range from lo to hi, like the top down version
+    # and we'll kind of iterate backwards, meaning lo will go from n - 2 to 0, and hi will go from lo to n - 1, as to
+    # keep increasing the window size. Internal logic will be the same as top down
+    # and we'll return dp[1][n - 2] in the end
+    def maxCoins(self, nums: List[int]) -> int:
+        nums = [1] + nums + [1]
+        n = len(nums)
+        dp = [[0] * n for _ in range(n)]
+
+        for lo in range(n - 2, 0, -1):
+            for hi in range(lo, n - 1):
+                for i in range(lo, hi + 1):
+                    coins = nums[lo - 1] * nums[i] * nums[hi + 1]
+                    coins += dp[lo][i - 1] + dp[i + 1][hi]
+                    dp[lo][hi] = max(dp[lo][hi], coins)
+        
+        return dp[1][n - 2]
+    
     # DP (Top Down) - Time = O(n ^ 3) - Space = O(n ^ 2)
     # <MEMORIZE THIS ONE> Its a super hard one and very non intuitive, link - https://www.youtube.com/watch?v=VFskby7lUbw
     # The main idea we follow is - lets add the boundary elements of 1 to the array and how about
     # thinking that our boundaries are l and r at new array called ballons idx 1 and len(ballon) - 2,
     # and lets think that for each idx i between (including both) l and r, we pop that i index last
+    # When i is popped last, all balloons between l and r except i are already gone
     # Then in that calculation current element will just be balloons[l - 1] * balloons[i] * balloons
     # [r + 1] + the coins we'll be able to make from the left subarray whose boundaries will be
     # (l, i - 1) + the right subarray whose boundaries will be (i + 1, r)
@@ -26,8 +48,7 @@ class Solution:
             if (l, r) in dp:
                 return dp[(l, r)]
 
-            # Iterate from right to left, and compute the result for each case where we pop balloon
-            # i last
+            # Iterate from left to right, and compute the result for each case where we pop balloon i last
             dp[(l, r)] = 0
             for i in range(l, r + 1):
                 # Add the coins to out total coins if we were popping i last, then the boundaries
