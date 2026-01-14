@@ -2,8 +2,25 @@ from typing import List
 
 
 class Solution:
+    # Greedy - Time = O(n) - Space = O(1)
+    # Count the jumps, and just stick with the current reach, and also keep a track of the max we can
+    # reach, first go as far as its possible within our current reach, but if we are at the last
+    # reachable element, only then update the current reach with the maxReach we we're calculating
+    # and increment jumps
+    def jump(self, nums: List[int]) -> int:
+        n = len(nums)
+        jumps, curReach, maxReach = 0, 0, 0
+
+        for i in range(n - 1):
+            maxReach = max(maxReach, i + nums[i])
+            if i == curReach:
+                curReach = maxReach
+                jumps += 1
+
+        return jumps
+
     # Greedy Solution - Time = O(n) - Space = O(1)
-    
+
     # I only realized it after writing it but this is like bfs, but the current node is the one we start with
     # and the child nodes are all the nodes we can jump to
     # for nums = [2, 3, 1, 1, 4]
