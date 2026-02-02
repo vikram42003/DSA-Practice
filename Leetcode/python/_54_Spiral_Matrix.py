@@ -2,6 +2,8 @@ from typing import List
 
 
 class Solution:
+    # Simulation - Time = O(m * n) - Space = O(1)
+    # Maintain 4 boundaries (top, bot, left, right) and iterate in a spiral order, shrinking bounds as we go.
     def spiralOrder(self, matrix: List[List[int]]) -> List[int]:
         top, bot, left, right = 0, len(matrix) - 1, 0, len(matrix[0]) - 1
         res = []
