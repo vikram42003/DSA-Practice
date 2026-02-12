@@ -3,7 +3,20 @@ from typing import List
 
 
 class Solution:
-    # HashMap and Sort - Time = O(n * k log k) - Space = O(n * k) 
+    # HashMap + Tuple = Time = O(n * k) - Space = O(n * k)
+    # Same as below except instead of sorting array values, we just count the frequency of each alphabet, and then hash
+    # with that (converted to tuple) as the key, so that we can uniqely detect anagrams since they'll have the same
+    # frequency of elements
+    def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
+        seen = defaultdict(list)
+        for s in strs:
+            freq = [0] * 26
+            for c in s:
+                freq[ord(c) - ord("a")] += 1
+            seen[tuple(freq)].append(s)
+        return [arr for arr in seen.values()]
+
+    # HashMap and Sort - Time = O(n * k log k) - Space = O(n * k)
     # Use a HashMap, and just let the key be sorted s in strs to uniquely identify anagrams, and add the corresponding
     # word to its key
     def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
