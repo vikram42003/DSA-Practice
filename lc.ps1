@@ -9,8 +9,10 @@ if ($args.Length -lt 1) {
 $arr = $args
 if ($args.Length -eq 1) {
   $arr = $args[0].ToString().Split(" ");
-  $arr[0] = $arr[0].Substring(0, $arr[0].Length -1);
 }
+
+# Remove the dot after question code
+$arr[0] = $arr[0] -replace '\.$', ''
 
 # Create the filename
 $str = "";
