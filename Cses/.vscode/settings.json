@@ -1,0 +1,6 @@
+{
+    "code-runner.executorMap": {
+        "python": "cd $dir; if ($?) { if (Test-Path .\\.venv\\Scripts\\python.exe) { Get-Content input.txt | .\\.venv\\Scripts\\python.exe $fileName | Set-Content output.txt } else { Get-Content input.txt | python $fileName | Set-Content output.txt } }"
+    },
+    "code-runner.runInTerminal": true
+}

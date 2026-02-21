@@ -43,4 +43,32 @@ if (Test-Path $filepath) {
 }
 New-Item $filepath -ItemType File | Out-Null;
 
+# ---------------- PYTHON TEMPLATE ----------------
+
+$template = @"
+import sys
+sys.setrecursionlimit(10**7)
+
+def solution():
+    input = sys.stdin.readline
+
+    # ------------------ INPUT ------------------
+    
+
+    # ------------------ LOGIC ------------------
+    
+
+    # ------------------ OUTPUT ------------------
+    print(result)
+
+
+if __name__ == "__main__":
+    solution()
+"@
+
+Set-Content -Path $filepath -Value $template
+
+New-Item -Path $folderpath -Name "input.txt" -ItemType File | Out-Null
+New-Item -Path $folderpath -Name "output.txt" -ItemType File | Out-Null
+
 Write-Output "`n$($filepath) created successfully`n";
