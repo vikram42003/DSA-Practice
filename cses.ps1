@@ -59,7 +59,7 @@ def solution():
     
 
     # ------------------ OUTPUT ------------------
-    print(result)
+    print(res)
 
 
 if __name__ == "__main__":
