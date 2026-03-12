@@ -1,6 +1,6 @@
 {
     "code-runner.executorMap": {
-        "python": "cd $dir; if ($?) { if (Test-Path .\\.venv\\Scripts\\python.exe) { Get-Content input.txt | .\\.venv\\Scripts\\python.exe $fileName | Set-Content output.txt } else { Get-Content input.txt | python $fileName | Set-Content output.txt } }"
+        "python": "cd $dir; if ($?) { if (Test-Path ..\\..\\.venv\\Scripts\\python.exe) { $p = \"..\\..\\.venv\\Scripts\\python.exe\" } else { $p = \"python\" }; if (Test-Path ..\\..\\multi_runner.py) { & $p ..\\..\\multi_runner.py $fileName } else { Get-Content input.txt | & $p $fileName | Set-Content output.txt } }"
     },
     "code-runner.runInTerminal": true
 }
