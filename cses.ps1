@@ -48,18 +48,18 @@ New-Item $filepath -ItemType File | Out-Null;
 $template = @"
 import sys
 sys.setrecursionlimit(10**7)
+input = sys.stdin.readline
+write = sys.stdout.write
 
 def solution():
-    input = sys.stdin.readline
-
     # ------------------ INPUT ------------------
     
 
     # ------------------ LOGIC ------------------
-    
+    res = []
 
     # ------------------ OUTPUT ------------------
-    print(res)
+    write("\n".join(res))
     return
 
 
