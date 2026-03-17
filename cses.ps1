@@ -47,6 +47,7 @@ New-Item $filepath -ItemType File | Out-Null;
 
 $template = @"
 import sys
+
 sys.setrecursionlimit(10**7)
 input = sys.stdin.readline
 write = sys.stdout.write
@@ -59,7 +60,7 @@ def solution():
     res = []
 
     # ------------------ OUTPUT ------------------
-    write("\n".join(res))
+    write("\n".join(res) + "\n")
     return
 
 
