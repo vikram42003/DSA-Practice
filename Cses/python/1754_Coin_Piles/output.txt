@@ -1,0 +1,20 @@
+--- Run 1 ---
+YES
+NO
+YES
+
+--- Run 2 ---
+YES
+NO
+YES
+NO
+YES
+
+--- Run 3 ---
+NO
+NO
+NO
+NO
+YES
+YES
+

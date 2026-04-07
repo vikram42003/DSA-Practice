@@ -1,0 +1,15 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Python: Debug with Input",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/debug_runner.py",
+            "console": "integratedTerminal",
+            "justMyCode": true,
+            "args": ["${file}"],
+            "cwd": "${fileDirname}"
+        }
+    ]
+}
