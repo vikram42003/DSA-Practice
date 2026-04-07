@@ -3,6 +3,7 @@ Debug runner script for CSES problems.
 Redirects stdin from input.txt and executes the target file.
 Allows debugger to step through the actual code.
 """
+
 import sys
 import os
 import runpy
@@ -17,7 +18,7 @@ input_file = os.path.join(target_dir, "input.txt")
 
 # Redirect stdin from input.txt if it exists
 if os.path.exists(input_file):
-    sys.stdin = open(input_file, 'r')
+    sys.stdin = open(input_file, "r")
 
 # Change to target directory
 os.chdir(target_dir)
