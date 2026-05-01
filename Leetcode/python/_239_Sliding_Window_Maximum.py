@@ -37,6 +37,31 @@ class Solution:
     # since we only need to work with the max
     # - return the result!
     def maxSlidingWindow(self, nums: List[int], k: int) -> List[int]:
+        # Non-increasing monotonic queue
+        q = deque()
+        res = []
+
+        l, r = 0, 0
+        while r < len(nums):
+            # Pop values smaller than cur elem form the right
+            while q and nums[q[-1]] < nums[r]:
+                q.pop()
+            q.append(r)
+
+            # If leftmost index is greater than q top, meaning it has exited our window then remove it
+            if l > q[0]:
+                q.popleft()
+
+            # Start adding elems to res only after q has k elements
+            if (r + 1) >= k:
+                res.append(nums[q[0]])
+                l += 1
+            
+            r += 1
+
+        return res
+    
+    def maxSlidingWindow(self, nums: List[int], k: int) -> List[int]:
         dq = deque()  # Monotonic descending queue
         res = []
 

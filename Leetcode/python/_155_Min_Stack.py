@@ -1,3 +1,7 @@
+from collections import defaultdict
+from heapq import heappop, heappush
+
+
 class MinStack:
     # Single array with tuples - Time = O(1) - Space = O(n)
     def __init__(self):
@@ -20,6 +24,29 @@ class MinStack:
     def getMin(self) -> int:
         return self.stack[-1][1]
 
+class MinStack:
+    def __init__(self):
+        self.stack = []
+        self.counter = defaultdict(int)
+        self.minHeap = []
+
+
+    def push(self, val: int) -> None:
+        self.stack.append(val)
+        self.counter[val] += 1
+        heappush(self.minHeap, val)
+
+    def pop(self) -> None:
+        poppedVal = self.stack.pop()
+        self.counter[poppedVal] -= 1
+
+    def top(self) -> int:
+        return self.stack[-1]
+
+    def getMin(self) -> int:
+        while self.minHeap and self.counter[self.minHeap[0]] < 1:
+            heappop(self.minHeap)
+        return self.minHeap[0]
 
 class MinStack:
     # Two Arrays - Time = O(1) - Space = O(n)
