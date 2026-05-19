@@ -2,6 +2,23 @@ from typing import List
 
 
 class Solution:
+    def largestRectangleArea(self, heights: List[int]) -> int:
+        heights.append(0)
+        n = len(heights)
+        maxArea = 0
+        stack = []
+
+        for i in range(n):
+            lastPoppedIdx = i
+            while stack and heights[i] < stack[-1][1]:
+                idx, height = stack.pop()
+                lastPoppedIdx = idx
+                maxArea = max(maxArea, height * (i - idx))
+
+            stack.append((lastPoppedIdx, heights[i]))
+
+        return maxArea
+
     # Monotonic Stack - Time = O(n) - Space = O(n)
     def largestRectangleArea(self, heights: List[int]) -> int:
         max_max = 0
@@ -33,7 +50,7 @@ class Solution:
     def largestRectangleArea(self, heights: List[int]) -> int:
         max_max = 0
         # stack is an ascending monotonic stack and will store pair of values
-        stack = [] # pair = (index, height)
+        stack = []  # pair = (index, height)
 
         for i in range(len(heights)):
             idx = i
