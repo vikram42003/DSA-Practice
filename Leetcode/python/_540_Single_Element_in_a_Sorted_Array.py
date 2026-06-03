@@ -8,6 +8,30 @@ class Solution:
             if i + 1 >= len(nums) or nums[i] != nums[i + 1]:
                 return nums[i]
         return -1
+    
+    # Binary search - Time = O(log n) - Space = O(1)
+    # We can see a pattern, if there's no single element then the pattern goes
+    #   - for even indices, cur == next
+    #   - for odd incides, cur == prev
+    # If the pattern breaks it means the single element is in the left half, otherwise it gotta
+    # be in the right half
+    # Early exit at prev != cur != next
+    # For out of bounds we assume it to me -1 so that its not equal to any element
+    def singleNonDuplicate(self, nums: List[int]) -> int:
+        l , r = 0, len(nums) -1
+        while l <= r:
+            m = l + (r - l) // 2
+            cur = nums[m]
+            prev = nums[m - 1] if m - 1 >= 0 else -1
+            nxt = nums[m + 1] if m + 1 <= len(nums) - 1 else -1
+
+            if prev != cur != nxt:
+                return cur
+            elif ((m & 1) == 1 and cur != prev) or ((m & 1) == 0 and cur != nxt):
+                r = m - 1
+            else:
+                l = m + 1
+        return -1
 
     # Binary Search Solution - Time = O(log n) - Space = O(1)
     # nums = [1,1,2,3,3,4,4,8,8]
