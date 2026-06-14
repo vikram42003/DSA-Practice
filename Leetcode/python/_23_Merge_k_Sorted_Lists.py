@@ -31,7 +31,7 @@ class Solution:
             cur = cur.next
 
         return dummy.next
-    
+
     # Heap - Time = O(n log k) - Space = O(k)
     # The lists are already in ascending order, so only keep track of each head of the list, add the min from the current heads
     # and then move that head forward and add its value to the pool again. This way we only store k elements and we check k elements
@@ -52,9 +52,29 @@ class Solution:
             cur = cur.next
             if l.next:
                 heapq.heappush(heap, (l.next.val, i, l.next))
-        
+
         return dummy.next
-    
+
+    def mergeKLists(self, lists: List[Optional[ListNode]]) -> Optional[ListNode]:
+        ListNode.__lt__ = lambda self, other: self.val < other.val
+        dummy = ListNode()
+        cur = dummy
+
+        # Need to add i as a tiebreaker incase of duplicates cause heapify doesnt support that by itself or allow for a comparator :/
+        heap = [(node.val, node) for node in lists if node]
+        heapq.heapify(heap)
+
+        while heap:
+            val, node = heapq.heappop(heap)
+            cur.next = node
+            cur = cur.next
+
+            node = node.next
+            if node:
+                heapq.heappush(heap, (node.val, node))
+
+        return dummy.next
+
     # (Merge Sort's) Merge - Time = O(n log k) - Space = O(1)
     def mergeKLists(self, lists: List[Optional[ListNode]]) -> Optional[ListNode]:
         while len(lists) > 1:
@@ -63,9 +83,9 @@ class Solution:
             combined = self.merge(list1, list2)
             print_list(combined)
             lists.append(combined)
-        
+
         return lists[0]
-    
+
     def merge(self, l1, l2):
         dummy = cur = ListNode()
         while l1 and l2:
@@ -76,26 +96,28 @@ class Solution:
                 cur.next = l2
                 l2 = l2.next
             cur = cur.next
-        
+
         if l1:
             cur.next = l1
         elif l2:
             cur.next = l2
-        
+
         return dummy.next
-    
-    
+
+
 def print_list(node):
-    print('->'.join(map(str, iter_list(node))))
+    print("->".join(map(str, iter_list(node))))
+
 
 def iter_list(node):
     while node:
         yield node.val
         node = node.next
-        
+
+
 test = Solution()
 # ans = [1,1,2,3,4,4,5,6]
-lists = [[1,4,5],[1,3,4],[2,6]]
+lists = [[1, 4, 5], [1, 3, 4], [2, 6]]
 linked_lists = []
 for arr in lists:
     dummy = cur = ListNode()
