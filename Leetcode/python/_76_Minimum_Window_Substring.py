@@ -35,3 +35,40 @@ class Solution:
                 l += 1
 
         return s[startIdx : endIdx + 1] if length != float("inf") else ""
+
+    # Brute Force - Time = O(n * k) - Space = O(n)
+    def minWindow(self, s: str, t: str) -> str:
+        n, m = len(s), len(t)
+
+        freq, freq_t = {}, {}
+        for c in t:
+            if c not in freq_t:
+                freq_t[c] = 0
+            freq_t[c] += 1
+        
+        resLength = float("inf")
+        res = ""
+        l, r = 0, 0
+        while r < n:
+            length = r - l + 1
+            if s[r] not in freq:
+                freq[s[r]] = 0
+            freq[s[r]] += 1
+
+            while length >= m and self.checkMaps(freq, freq_t):
+                length = r - l + 1
+                if length < resLength:
+                    res = s[l:r + 1]
+                    resLength = min(resLength, length)
+                freq[s[l]] -= 1
+                l += 1
+            
+            r += 1
+
+        return res 
+
+    def checkMaps(self, s, t):
+        for k in t:
+            if k not in s or s[k] < t[k]:
+                return False
+        return True

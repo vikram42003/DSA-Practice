@@ -15,6 +15,23 @@ from typing import List
 
 
 class Solution:
+    # Swap Version
+    def getPermutations(self, s):
+            res = []
+            s = list(s)
+    
+            def permute(idx):
+                if idx == len(s):
+                    res.append("".join(s))
+                
+                for i in range(idx, len(s)):
+                    s[idx], s[i] = s[i], s[idx]
+                    permute(idx + 1)
+                    s[idx], s[i] = s[i], s[idx]
+    
+            permute(0)
+            return res
+        
     # Neetcode version - Time = O(n! * n^2) - Space = O(n! * n)
     def permuteNC(self, nums: List[int]) -> List[List[int]]:
         if len(nums) == 0:

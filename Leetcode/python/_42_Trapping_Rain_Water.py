@@ -2,6 +2,57 @@ from typing import List
 
 
 class Solution:
+    # Optimal - Time = O(n) - Space = O(1)
+    # Just like the Prefix/Suffix approach except instead of using arrays to track prefix suffix sums, we can see that
+    # for any particular idx, we only need the leftmax and rightmax for that index, so we can keep a running lmax and rmax
+    # and then compute that directly, also we had the min(prefix[i], suffix[i]), so we can do calculations based on that 
+    # by just checking for lmax < rmax beforehand
+    def trap(self, height: List[int]) -> int:
+        n = len(height)
+        l, r = 0, n - 1
+        lmax, rmax = height[l], height[r]
+        res = 0
+    
+        while l < r:
+            if lmax < rmax:
+                l += 1
+                lmax = max(lmax, height[l])
+                res += lmax - height[l]
+            else:
+                r -= 1
+                rmax = max(rmax, height[r])
+                res += rmax - height[r]
+
+        return res
+    
+    # Prefix/Suffix Sums - Time = O(n) - Space = O(n)
+    # First pre-compute left and right maximum boundary heights for every index:
+    #  - prefix[i] stores the max height from index 0 to i
+    #  - suffix[i] stores the max height from index i to n-1
+    #
+    # Then iterate through each bar i to calculate trapped water:
+    #  - The water level at index i is bounded by min(prefix[i], suffix[i])
+    #  - Water trapped at i = water level - height[i]
+    #  - Accumulate water whenever water level > height[i]
+    def trap(self, height: List[int]) -> int:
+        n = len(height)
+        prefix, suffix = [0] * n, [0] * n
+        l, r = 0, n - 1
+        while l < n:
+            prefix[l] = max(height[l], prefix[l - 1] if l - 1 >= 0 else 0)
+            suffix[r] = max(height[r], suffix[r + 1] if r + 1 < n else 0)
+            l += 1
+            r -= 1
+
+        maxWater = 0
+
+        for i in range(n):
+            cur = min(prefix[i], suffix[i]) - height[i]
+            if cur > 0:
+                maxWater += cur
+
+        return maxWater
+
     # Sweep Left and Right - Time = O(n) - Space = O(1)
     # The core idea is - we can traverse from left to right, take a left bound as a wall, once we
     # have a wall, we see if current height < left wall, if yes then left wall - the height of the elevation

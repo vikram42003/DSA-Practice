@@ -36,3 +36,22 @@ class Solution:
                         r -= 1
 
         return res
+
+    # Map and two sum search - TLE
+    def threeSum(self, nums: list[int]) -> list[list[int]]:
+        mp = { n: i for i, n in enumerate(nums) }
+        res = set()
+
+        for i in range(len(nums)):
+            a = nums[i]
+            for j in range(i + 1, len(nums)):
+                b = nums[j]
+                c = -(a + b)
+
+                if c in mp:
+                    k = mp[c]
+                    if i != j and j != k and i != k:
+                        srtd = sorted([a, b, c])
+                        res.add(tuple(srtd))
+        
+        return [list(r) for r in res]
