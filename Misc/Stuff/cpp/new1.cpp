@@ -1,4 +1,5 @@
 #include <iostream>
+using namespace std;
 
 // Binary search
 
@@ -15,6 +16,7 @@ int main() {
         
         if (arr[mid] == target) {
             cout << "Element found at idx " << mid << endl;
+            return 0;
         } else if (arr[mid] < target) {
             l = mid + 1;
         } else {
