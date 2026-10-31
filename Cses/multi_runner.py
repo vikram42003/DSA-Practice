@@ -43,7 +43,12 @@ def main():
     results = []
 
     for i, chunk in enumerate(chunks, 1):
-        print(f"--- Run {i} (input: {chunk.strip()!r}) ---", file=sys.stderr)
+        lines = [line.strip() for line in chunk.strip().splitlines() if line.strip()]
+        preview = " | ".join(lines)
+        if len(preview) > 60:
+            preview = preview[:57] + "..."
+        prefix = "\n" if i == 1 else ""
+        print(f"{prefix}--- Run {i} ({preview}) ---", file=sys.stderr)
         sys.stderr.flush()
 
         result = subprocess.run(

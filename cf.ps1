@@ -48,7 +48,6 @@ New-Item $filepath -ItemType File | Out-Null;
 $template = @"
 import sys
 
-sys.setrecursionlimit(10**7)
 input = sys.stdin.readline
 write = sys.stdout.write
 
@@ -63,9 +62,13 @@ def solve():
     
 
 def solution():
-    t = int(input())
-    for _ in range(t):
-        solve()
+    # Default: single test case per run (multi_runner handles multiple cases separated by blank lines in input.txt)
+    solve()
+
+    # If the problem statement specifies 't' test cases in a single run (standard CF contests), swap with:
+    # t = int(input())
+    # for _ in range(t):
+    #     solve()
 
 if __name__ == "__main__":
     solution()

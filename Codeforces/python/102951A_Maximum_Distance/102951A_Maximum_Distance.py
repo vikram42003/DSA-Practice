@@ -1,16 +1,14 @@
 import sys
 
-sys.setrecursionlimit(10**7)
 input = sys.stdin.readline
 write = sys.stdout.write
 
 
 def solve():
     # ------------------ INPUT ------------------
-    pass
-    n = int(input())
-    xs = list(map(int, input().split()))
-    ys = list(map(int, input().split()))
+    n = int(input().strip())
+    xs = list(map(int, input().strip().split()))
+    ys = list(map(int, input().strip().split()))
 
     # ------------------ LOGIC ------------------
     res = 0
@@ -25,12 +23,8 @@ def solve():
 
 
 def solution():
-    t = int(input())
-    for _ in range(t):
-        solve()
+    solve()
 
 
-# No t loop — this is a single-test problem
 if __name__ == "__main__":
     solution()
-    solve()
