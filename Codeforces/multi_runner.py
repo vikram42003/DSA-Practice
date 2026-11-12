@@ -62,6 +62,9 @@ def main():
         if result.stderr:
             print(result.stderr, end="", file=sys.stderr)
 
+        if output and not output.endswith("\n"):
+            output += "\n"
+
         results.append(f"--- Run {i} ---\n{output}\n")
         # print(output, end="")  # live preview in terminal
         sys.stdout.flush()
