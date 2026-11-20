@@ -21,8 +21,14 @@ for ($i = 0; $i -lt $arr.Length; $i++) {
 }
 $str += ".py";
 
+# Remove apostrophes
+$str = $str -replace '[''\u2018\u2019`]', '';
+
 # Remove any invalid filename characters
-$str = $str -replace '[<>:"/\\|?*]', ''
+$str = $str -replace '[<>:"/\\|?*]', '';
+
+# Replace any spaces with underscores
+$str = $str -replace '\s+', '_';
 
 $filepath = ".\Leetcode\python\$($str)";
 

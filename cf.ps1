@@ -23,8 +23,14 @@ for ($i = 0; $i -lt $arr.Length; $i++) {
 # Remove leading underscore
 $str = $str.TrimStart("_")
 
+# Remove apostrophes
+$str = $str -replace '[''\u2018\u2019`]', '';
+
 # Remove any invalid filename characters
 $str = $str -replace '[<>:"/\\|?*]', '';
+
+# Replace any spaces with underscores
+$str = $str -replace '\s+', '_';
 
 # create a folder for the problem first, only if it doesnt exist
 $folderpath = ".\Codeforces\python\$($str)";
