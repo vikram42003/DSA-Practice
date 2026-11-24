@@ -57,28 +57,38 @@ import sys
 input = sys.stdin.readline
 write = sys.stdout.write
 
-def solve():
-    # ------------------ INPUT ------------------
-    pass
 
-    # ------------------ LOGIC ------------------
-    
-
-    # ------------------ OUTPUT ------------------
-    
-
-def solution():
-    # Default: single test case per run (multi_runner handles multiple cases separated by blank lines in input.txt)
-    solve()
-
-    # If the problem statement specifies 't' test cases in a single run (standard CF contests), swap with:
-    # t = int(input())
-    # for _ in range(t):
-    #     solve()
-
-if __name__ == "__main__":
-    solution()
 "@
+
+# ---------------- OLD TEMPLATE (kept for reference) ----------------
+# $template = @"
+# import sys
+#
+# input = sys.stdin.readline
+# write = sys.stdout.write
+#
+# def solve():
+#     # ------------------ INPUT ------------------
+#     pass
+#
+#     # ------------------ LOGIC ------------------
+#
+#
+#     # ------------------ OUTPUT ------------------
+#
+#
+# def solution():
+#     # Default: single test case per run (multi_runner handles multiple cases separated by blank lines in input.txt)
+#     solve()
+#
+#     # If the problem statement specifies 't' test cases in a single run (standard CF contests), swap with:
+#     # t = int(input())
+#     # for _ in range(t):
+#     #     solve()
+#
+# if __name__ == "__main__":
+#     solution()
+# "@
 
 Set-Content -Path $filepath -Value $template
 
